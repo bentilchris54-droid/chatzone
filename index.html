@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChatZone</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #101827;
+      color: white;
+    }
+
+    header {
+      padding: 20px;
+      background: #172338;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h2 {
+      margin: 0;
+      color: #63a4ff;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: #1b2940;
+      padding: 25px;
+      border-radius: 15px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 32px;
+    }
+
+    p {
+      color: #bdc8da;
+      line-height: 1.6;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .google {
+      background: white;
+      color: #222;
+    }
+
+    .nickname {
+      background: #3878e8;
+      color: white;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      margin-top: 15px;
+      border-radius: 8px;
+      border: 1px solid #42516a;
+      background: #101827;
+      color: white;
+      font-size: 16px;
+    }
+
+    footer {
+      text-align: center;
+      color: #8998af;
+      padding: 25px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h2>ChatZone</h2>
+    <span>💬</span>
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <h1>Welcome to ChatZone</h1>
+
+      <p>
+        Meet new people, make friends, and enjoy
+        conversations with people around the world.
+      </p>
+
+      <button class="google">
+        Continue with Google
+      </button>
+
+      <p>Choose a nickname for your chats</p>
+
+      <input
+        type="text"
+        placeholder="Enter your nickname"
+        maxlength="20"
+      >
+
+      <button class="nickname">
+        Join Chat
+      </button>
+
+      <p>
+        Be respectful. Keep your personal information private.
+      </p>
+    </div>
+  </div>
+
+  <footer>
+    © 2026 ChatZone
+  </footer>
+
+</body>
+</html>
