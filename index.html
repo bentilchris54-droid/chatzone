@@ -2,426 +2,633 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ChatZone</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080914">
+<title>ChatZone | Gaming Social</title>
 
-  <style>
-    * { box-sizing: border-box; }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #101827;
-      color: white;
-    }
+:root{
+ --bg:#080914;
+ --panel:#111326;
+ --panel2:#171a32;
+ --purple:#9b5cff;
+ --cyan:#36e5ff;
+ --text:#f6f4ff;
+ --muted:#9296b5;
+ --border:rgba(155,92,255,.2);
+}
 
-    header {
-      padding: 16px;
-      background: #172338;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+*{box-sizing:border-box}
 
-    header h2 {
-      margin: 0;
-      color: #63a4ff;
-    }
+body{
+ margin:0;
+ background:
+ radial-gradient(ellipse at 10% 0%,#21113f 0%,transparent 40%),
+ radial-gradient(ellipse at 90% 30%,#071f36 0%,transparent 35%),
+ var(--bg);
+ color:var(--text);
+ font-family:Inter,Arial,sans-serif;
+ min-height:100vh;
+}
 
-    main {
-      max-width: 650px;
-      margin: 25px auto;
-      padding: 15px;
-    }
+header{
+ height:76px;
+ padding:0 6%;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ background:rgba(8,9,20,.85);
+ backdrop-filter:blur(15px);
+ border-bottom:1px solid var(--border);
+ position:sticky;
+ top:0;
+ z-index:5;
+}
 
-    .card {
-      background: #1b2940;
-      padding: 22px;
-      border-radius: 14px;
-    }
+.logo{
+ font-size:23px;
+ font-weight:900;
+ letter-spacing:-1px;
+ background:linear-gradient(90deg,var(--purple),var(--cyan));
+ background-clip:text;
+ -webkit-background-clip:text;
+ color:transparent;
+}
 
-    button, input {
-      width: 100%;
-      padding: 14px;
-      margin-top: 12px;
-      border-radius: 8px;
-      font-size: 16px;
-    }
+.logo span{color:white}
 
-    button {
-      border: 0;
-      cursor: pointer;
-      background: #3878e8;
-      color: white;
-    }
+.header-right{
+ display:flex;
+ align-items:center;
+ gap:10px;
+ color:var(--cyan);
+ font-size:12px;
+ font-weight:800;
+}
 
-    .google {
-      background: white;
-      color: #222;
-    }
+.online-dot{
+ width:8px;height:8px;
+ border-radius:50%;
+ background:#37ed9a;
+ box-shadow:0 0 12px #37ed9a;
+}
 
-    .secondary {
-      background: #34445e;
-    }
+main{
+ max-width:1100px;
+ margin:auto;
+ padding:45px 20px;
+}
 
-    input {
-      border: 1px solid #42516a;
-      background: #101827;
-      color: white;
-    }
+.hero{
+ text-align:center;
+ margin:25px auto 38px;
+}
 
-    #messages {
-      height: 300px;
-      overflow-y: auto;
-      background: #101827;
-      border-radius: 8px;
-      padding: 12px;
-      margin-top: 15px;
-    }
+.eyebrow{
+ color:var(--cyan);
+ font-size:11px;
+ font-weight:800;
+ letter-spacing:3px;
+}
 
-    .message {
-      padding: 9px;
-      margin-bottom: 8px;
-      background: #24344d;
-      border-radius: 8px;
-      overflow-wrap: anywhere;
-    }
+.hero h1{
+ font-size:clamp(35px,7vw,64px);
+ line-height:1.05;
+ margin:17px 0;
+ letter-spacing:-3px;
+}
 
-    .message strong {
-      color: #83b5ff;
-    }
+.gradient{
+ background:linear-gradient(90deg,#b28aff,#4ce7ff);
+ -webkit-background-clip:text;
+ background-clip:text;
+ color:transparent;
+}
 
-    .small {
-      color: #bdc8da;
-      font-size: 14px;
-    }
+.hero p{
+ color:var(--muted);
+ max-width:500px;
+ margin:auto;
+ line-height:1.8;
+ font-size:14px;
+}
 
-    #chat, #profile {
-      display: none;
-    }
+.layout{
+ display:grid;
+ grid-template-columns:1.2fr .8fr;
+ gap:20px;
+ align-items:start;
+}
 
-    #status {
-      color: #bdc8da;
-    }
-  </style>
+.card{
+ background:linear-gradient(145deg,rgba(24,25,49,.95),rgba(12,15,31,.97));
+ border:1px solid var(--border);
+ border-radius:20px;
+ padding:25px;
+ box-shadow:0 15px 45px #0005;
+ position:relative;
+ overflow:hidden;
+}
+
+.card:before{
+ content:"";
+ position:absolute;
+ width:130px;height:130px;
+ right:-80px;top:-80px;
+ background:var(--purple);
+ filter:blur(85px);
+ opacity:.2;
+ pointer-events:none;
+}
+
+.card h2{
+ font-size:20px;
+ margin:0 0 8px;
+}
+
+.subtitle{
+ color:var(--muted);
+ font-size:13px;
+ line-height:1.7;
+ margin-bottom:20px;
+}
+
+input{
+ width:100%;
+ padding:15px;
+ border-radius:12px;
+ background:#090c1b;
+ border:1px solid #343452;
+ outline:none;
+ color:white;
+ font-size:14px;
+ margin-top:10px;
+ transition:.2s;
+}
+
+input:focus{
+ border-color:var(--cyan);
+ box-shadow:0 0 15px #36e5ff20;
+}
+
+button{
+ width:100%;
+ padding:15px;
+ border:0;
+ border-radius:12px;
+ margin-top:13px;
+ color:white;
+ font-weight:800;
+ font-size:13px;
+ cursor:pointer;
+ background:linear-gradient(100deg,#813bdf,#5143d8);
+ box-shadow:0 5px 20px #7539d933;
+ transition:transform .2s,filter .2s;
+}
+
+button:hover{
+ transform:translateY(-2px);
+ filter:brightness(1.15);
+}
+
+button:disabled{opacity:.5;cursor:not-allowed}
+
+.google{
+ background:#fff;
+ color:#171717;
+ box-shadow:none;
+}
+
+.secondary{
+ background:#202641;
+ border:1px solid #373d61;
+ box-shadow:none;
+}
+
+.cyan-button{
+ background:linear-gradient(100deg,#087eaa,#16b7c9);
+ box-shadow:0 5px 20px #36e5ff22;
+}
+
+.avatar{
+ width:75px;
+ height:75px;
+ display:grid;
+ place-items:center;
+ border-radius:22px;
+ font-size:32px;
+ background:linear-gradient(140deg,#713bd4,#087f9f);
+ box-shadow:0 0 30px #8b5cf644;
+ margin-bottom:17px;
+}
+
+.username{
+ color:var(--cyan);
+ font-weight:800;
+}
+
+.profile-link{
+ font-size:12px;
+}
+
+.small{
+ color:var(--muted);
+ font-size:12px;
+ line-height:1.7;
+}
+
+#status,#setupStatus{
+ color:var(--cyan);
+ font-size:13px;
+ margin-top:15px;
+ overflow-wrap:anywhere;
+}
+
+#welcome,#profileSetup,#app{display:none}
+
+.profile-box{
+ padding:16px;
+ margin-top:15px;
+ background:#0b1021;
+ border:1px solid #343451;
+ border-radius:14px;
+}
+
+.result-name{
+ font-size:16px;
+ font-weight:800;
+}
+
+.section-label{
+ font-size:10px;
+ letter-spacing:2px;
+ font-weight:800;
+ color:var(--purple);
+ margin-bottom:15px;
+}
+
+footer{
+ text-align:center;
+ color:#676b8c;
+ font-size:11px;
+ padding:35px 15px;
+}
+
+@media(max-width:750px){
+ .layout{grid-template-columns:1fr}
+ main{padding:25px 15px}
+ header{padding:0 18px}
+ .hero{margin-top:20px}
+ .card{padding:21px}
+}
+</style>
 </head>
 
 <body>
 
 <header>
-  <h2>ChatZone</h2>
-  <span>💬</span>
+ <div class="logo">CHAT<span>ZONE</span> ⚡</div>
+ <div class="header-right">
+  <span class="online-dot"></span>
+  GAMING SOCIAL
+ </div>
 </header>
 
 <main>
 
-  <section class="card" id="welcome">
-    <h1>Welcome to ChatZone</h1>
-    <p>Meet people, make friends, and enjoy conversations.</p>
+ <section class="hero">
+  <div class="eyebrow">YOUR WORLD. YOUR PEOPLE.</div>
+  <h1>ENTER THE <span class="gradient">ZONE.</span></h1>
+  <p>Meet new players, build your circle and connect with people through ChatZone.</p>
+ </section>
 
-    <button class="google" id="googleBtn">
-      Continue with Google
-    </button>
+ <section class="card" id="welcome">
+  <div class="layout">
+   <div>
+    <div class="eyebrow">WELCOME PLAYER</div>
+    <h1 style="font-size:30px;margin:15px 0">Your next connection starts here.</h1>
+    <p class="subtitle">Sign in with Google and create your own gaming identity.</p>
+    <button class="google" id="googleBtn">🌐 &nbsp; Continue with Google</button>
+    <p id="status">Ready when you are.</p>
+   </div>
+   <div style="display:flex;align-items:center;justify-content:center">
+    <div style="font-size:100px;filter:drop-shadow(0 0 25px #9b5cff)">🎮</div>
+   </div>
+  </div>
+ </section>
 
-    <p id="status">Sign in to get started.</p>
-  </section>
+ <section class="card" id="profileSetup">
+  <div class="eyebrow">PLAYER REGISTRATION</div>
+  <h2 style="margin-top:15px">Create your identity</h2>
+  <p class="subtitle">Choose a unique username that people can use to find you.</p>
+  <div class="avatar">👾</div>
+  <input id="usernameInput" maxlength="20" placeholder="YourUsername">
+  <p class="small">3–20 characters. Letters, numbers and underscores only.</p>
+  <button id="createBtn">CREATE MY PROFILE ⚡</button>
+  <p id="setupStatus"></p>
+ </section>
 
-  <section class="card" id="profile">
-    <h2>Choose your nickname</h2>
-    <p class="small">This is the name other people will see.</p>
+ <section id="app">
+  <div class="layout">
 
-    <input
-      id="nickname"
-      maxlength="20"
-      placeholder="Enter a nickname"
-    >
+   <div class="card">
+    <div class="section-label">PLAYER PROFILE</div>
+    <div class="avatar">👾</div>
+    <h2 id="displayName">Welcome, Player</h2>
+    <p class="username" id="displayUsername">@username</p>
 
-    <button id="saveNameBtn">
-      Continue to chat
-    </button>
-  </section>
+    <div class="profile-box">
+     <p class="small">YOUR PERSONAL PROFILE LINK</p>
+     <input id="profileLink" class="profile-link" readonly>
+     <button class="cyan-button" id="shareBtn">↗ SHARE MY PROFILE</button>
+    </div>
 
-  <section class="card" id="chat">
-    <p id="userInfo"></p>
+    <button class="secondary" id="changeBtn">✎ CHANGE USERNAME</button>
+    <button class="secondary" id="signOutBtn">SIGN OUT</button>
+   </div>
 
-    <button class="secondary" id="signOutBtn">
-      Sign out
-    </button>
+   <div class="card">
+    <div class="section-label">DISCOVER PLAYERS</div>
+    <h2>Find your people.</h2>
+    <p class="subtitle">Search for someone using their exact ChatZone username.</p>
 
-    <h2>General Chat</h2>
+    <input id="searchInput" placeholder="Enter username...">
+    <button id="searchBtn">⌕ SEARCH PLAYERS</button>
 
-    <div id="messages"></div>
+    <div id="result"></div>
 
-    <input
-      id="messageInput"
-      maxlength="500"
-      placeholder="Write a message..."
-    >
+    <div class="profile-box" style="margin-top:25px">
+     <div class="section-label">COMING NEXT</div>
+     <p>✦ Friend requests</p>
+     <p>✦ Private conversations</p>
+     <p>✦ Your personal chat list</p>
+     <p class="small">These features are not active in this version yet.</p>
+    </div>
+   </div>
 
-    <button id="sendBtn">Send message</button>
-
-    <p class="small">
-      Be respectful. Don't share personal information.
-    </p>
-  </section>
+  </div>
+ </section>
 
 </main>
 
+<footer>
+ CHATZONE © 2026 · CONNECT DIFFERENTLY ⚡
+</footer>
+
 <script type="module">
+import {initializeApp} from
+"https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
 
-  import { initializeApp } from
-    "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
+import {
+ getAuth,GoogleAuthProvider,signInWithRedirect,
+ getRedirectResult,onAuthStateChanged,signOut
+} from
+"https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
 
-  import {
-    getAuth,
-    GoogleAuthProvider,
-    signInWithRedirect,
-    getRedirectResult,
-    onAuthStateChanged,
-    signOut
-  } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
+import {
+ getDatabase,ref,get,update
+} from
+"https://www.gstatic.com/firebasejs/13.4.0/firebase-database.js";
 
-  import {
-    getDatabase,
-    ref,
-    set,
-    push,
-    get,
-    onValue,
-    query,
-    limitToLast
-  } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-database.js";
+const firebaseConfig={
+ apiKey:"AIzaSyBLjm_Fm3rf6xArbVQm8NsHeMZAQAtYho8",
+ authDomain:"gamersnet-b9c7d.firebaseapp.com",
+ databaseURL:"https://gamersnet-b9c7d-default-rtdb.firebaseio.com",
+ projectId:"gamersnet-b9c7d",
+ storageBucket:"gamersnet-b9c7d.firebasestorage.app",
+ messagingSenderId:"706719567863",
+ appId:"1:706719567863:web:c45901a666cea84b5368f2",
+ measurementId:"G-L3QQF7E0WZ"
+};
 
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getDatabase(app);
+const provider=new GoogleAuthProvider();
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyBLjm_Fm3rf6xArbVQm8NsHeMZAQAtYho8",
-    authDomain: "gamersnet-b9c7d.firebaseapp.com",
-    databaseURL: "https://gamersnet-b9c7d-default-rtdb.firebaseio.com",
-    projectId: "gamersnet-b9c7d",
-    storageBucket: "gamersnet-b9c7d.firebasestorage.app",
-    messagingSenderId: "706719567863",
-    appId: "1:706719567863:web:c45901a666cea84b5368f2",
-    measurementId: "G-L3QQF7E0WZ"
-  };
+const $=id=>document.getElementById(id);
 
+let currentUser=null;
+let currentProfile=null;
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const db = getDatabase(app);
-  const provider = new GoogleAuthProvider();
+function show(page){
+ $("welcome").style.display=page==="welcome"?"block":"none";
+ $("profileSetup").style.display=page==="setup"?"block":"none";
+ $("app").style.display=page==="app"?"block":"none";
+}
 
+function cleanUsername(value){
+ return value.trim().toLowerCase();
+}
 
-  const welcome = document.getElementById("welcome");
-  const profile = document.getElementById("profile");
-  const chat = document.getElementById("chat");
-  const status = document.getElementById("status");
+function validUsername(value){
+ return /^[a-z0-9_]{3,20}$/.test(value);
+}
 
-  const nicknameInput = document.getElementById("nickname");
-  const messageInput = document.getElementById("messageInput");
-  const messagesDiv = document.getElementById("messages");
+$("googleBtn").onclick=async()=>{
+ $("status").textContent="Connecting to Google...";
+ try{
+  await signInWithRedirect(auth,provider);
+ }catch(error){
+  $("status").textContent=error.message;
+ }
+};
 
-  let currentUser = null;
-  let currentNickname = "";
-  let stopListening = null;
+try{
+ await getRedirectResult(auth);
+}catch(error){
+ $("status").textContent="Sign-in error: "+error.message;
+}
 
+onAuthStateChanged(auth,async user=>{
+ currentUser=user;
 
-  function showStatus(message) {
-    status.textContent = message;
+ if(!user){
+  currentProfile=null;
+  show("welcome");
+  return;
+ }
+
+ try{
+  const snap=await get(ref(db,"profiles/"+user.uid));
+  const profile=snap.val();
+
+  if(profile && profile.username){
+   currentProfile=profile;
+   showProfile();
+  }else{
+   show("setup");
   }
 
-
-  document.getElementById("googleBtn").onclick = async () => {
-    try {
-      showStatus("Opening Google Sign-In...");
-
-      await signInWithRedirect(auth, provider);
-
-    } catch (error) {
-      showStatus("Sign-in error: " + error.message);
-    }
-  };
-
-
-  try {
-    await getRedirectResult(auth);
-  } catch (error) {
-    showStatus("Sign-in error: " + error.message);
+  const requested=new URLSearchParams(location.search).get("user");
+  if(requested && validUsername(cleanUsername(requested))){
+   $("searchInput").value=requested;
+   await searchUser(requested);
   }
 
+ }catch(error){
+  show("setup");
+  $("setupStatus").textContent="Could not load profile: "+error.message;
+ }
+});
 
-  onAuthStateChanged(auth, async user => {
+async function saveUsername(raw){
+ const username=cleanUsername(raw);
 
-    currentUser = user;
+ if(!validUsername(username)){
+  throw new Error("Use 3–20 letters, numbers or underscores.");
+ }
 
-    if (stopListening) {
-      stopListening();
-      stopListening = null;
-    }
+ const nameRef=ref(db,"usernames/"+username);
+ const existing=await get(nameRef);
 
-    if (!user) {
-      welcome.style.display = "block";
-      profile.style.display = "none";
-      chat.style.display = "none";
-      return;
-    }
+ if(existing.exists() && existing.val()!==currentUser.uid){
+  throw new Error("That username is taken. Try another.");
+ }
 
-    welcome.style.display = "none";
-    chat.style.display = "none";
+ const oldUsername=currentProfile?.username;
+ const updates={};
 
-    try {
+ updates["usernames/"+username]=currentUser.uid;
 
-      const snapshot = await get(
-        ref(db, "profiles/" + user.uid + "/nickname")
-      );
+ if(oldUsername && oldUsername!==username){
+  updates["usernames/"+oldUsername]=null;
+ }
 
-      const savedNickname = snapshot.val();
+ updates["profiles/"+currentUser.uid]={
+  username,
+  nickname:currentProfile?.nickname || currentUser.displayName || "Player",
+  createdAt:currentProfile?.createdAt || Date.now()
+ };
 
-      if (
-        typeof savedNickname === "string" &&
-        savedNickname.length > 0
-      ) {
-        currentNickname = savedNickname;
-        openChat();
+ await update(ref(db),updates);
 
-      } else {
-        profile.style.display = "block";
-      }
+ currentProfile={
+  username,
+  nickname:currentProfile?.nickname || currentUser.displayName || "Player",
+  createdAt:currentProfile?.createdAt || Date.now()
+ };
 
-    } catch (error) {
+ showProfile();
+}
 
-      profile.style.display = "block";
+$("createBtn").onclick=async()=>{
+ $("createBtn").disabled=true;
+ $("setupStatus").textContent="Creating your player profile...";
+ try{
+  await saveUsername($("usernameInput").value);
+ }catch(error){
+  $("setupStatus").textContent=error.message;
+ }finally{
+  $("createBtn").disabled=false;
+ }
+};
 
-      alert("Could not load your profile: " + error.message);
-    }
+function showProfile(){
+ show("app");
+ $("displayName").textContent="Welcome, "+currentProfile.nickname;
+ $("displayUsername").textContent="@"+currentProfile.username;
 
-  });
+ const link=new URL(location.href);
+ link.search="";
+ link.searchParams.set("user",currentProfile.username);
+ $("profileLink").value=link.toString();
+}
 
+$("changeBtn").onclick=async()=>{
+ const newName=prompt("Enter your new username:",currentProfile.username);
+ if(newName===null)return;
 
-  document.getElementById("saveNameBtn").onclick = async () => {
+ try{
+  await saveUsername(newName);
+  alert("Username updated!");
+ }catch(error){
+  alert(error.message);
+ }
+};
 
-    if (!currentUser) return;
+$("shareBtn").onclick=async()=>{
+ const link=$("profileLink").value;
+ try{
+  if(navigator.share){
+   await navigator.share({
+    title:"Find me on ChatZone",
+    url:link
+   });
+  }else{
+   await navigator.clipboard.writeText(link);
+   alert("Profile link copied!");
+  }
+ }catch(error){
+  if(error.name!=="AbortError")alert("Could not share link.");
+ }
+};
 
-    const name = nicknameInput.value.trim();
+async function searchUser(raw){
+ const username=cleanUsername(raw);
+ $("result").replaceChildren();
 
-    if (name.length < 2 || name.length > 20) {
-      alert("Your nickname must be 2 to 20 characters.");
-      return;
-    }
+ if(!validUsername(username)){
+  $("result").textContent="Enter a valid username.";
+  return;
+ }
 
-    try {
+ try{
+  const userSnap=await get(ref(db,"usernames/"+username));
 
-      await set(
-        ref(db, "profiles/" + currentUser.uid),
-        {
-          nickname: name
-        }
-      );
-
-      currentNickname = name;
-      openChat();
-
-    } catch (error) {
-
-      alert("Could not save nickname: " + error.message);
-    }
-
-  };
-
-
-  function openChat() {
-
-    welcome.style.display = "none";
-    profile.style.display = "none";
-    chat.style.display = "block";
-
-    document.getElementById("userInfo").textContent =
-      "Signed in as " + currentNickname;
-
-    if (stopListening) {
-      stopListening();
-    }
-
-    const messagesQuery = query(
-      ref(db, "messages"),
-      limitToLast(50)
-    );
-
-    stopListening = onValue(messagesQuery, snapshot => {
-
-      messagesDiv.replaceChildren();
-
-      snapshot.forEach(child => {
-
-        const message = child.val();
-
-        if (!message || typeof message.text !== "string") {
-          return;
-        }
-
-        const item = document.createElement("div");
-        item.className = "message";
-
-        const name = document.createElement("strong");
-        name.textContent = message.nickname || "User";
-
-        const text = document.createElement("div");
-        text.textContent = message.text;
-
-        item.append(name, text);
-        messagesDiv.appendChild(item);
-
-      });
-
-      messagesDiv.scrollTop = messagesDiv.scrollHeight;
-
-    });
-
+  if(!userSnap.exists()){
+   $("result").textContent="No player found.";
+   return;
   }
 
+  const uid=userSnap.val();
 
-  document.getElementById("sendBtn").onclick = async () => {
+  if(uid===currentUser.uid){
+   $("result").textContent="That's your own profile!";
+   return;
+  }
 
-    if (!currentUser || !currentNickname) return;
+  const profileSnap=await get(ref(db,"profiles/"+uid));
+  const profile=profileSnap.val();
 
-    const text = messageInput.value.trim();
+  if(!profile){
+   $("result").textContent="Profile not found.";
+   return;
+  }
 
-    if (!text || text.length > 500) return;
+  const box=document.createElement("div");
+  box.className="profile-box";
 
-    try {
+  const name=document.createElement("div");
+  name.className="result-name";
+  name.textContent=profile.nickname || "Player";
 
-      await push(
-        ref(db, "messages"),
-        {
-          uid: currentUser.uid,
-          nickname: currentNickname,
-          text: text,
-          createdAt: Date.now()
-        }
-      );
+  const handle=document.createElement("p");
+  handle.className="username";
+  handle.textContent="@"+profile.username;
 
-      messageInput.value = "";
+  const note=document.createElement("p");
+  note.className="small";
+  note.textContent="Player found on ChatZone. Friend requests are coming soon.";
 
-    } catch (error) {
+  box.append(name,handle,note);
+  $("result").appendChild(box);
 
-      alert("Message could not be sent: " + error.message);
-    }
+ }catch(error){
+  $("result").textContent="Search failed: "+error.message;
+ }
+}
 
-  };
+$("searchBtn").onclick=()=>searchUser($("searchInput").value);
 
+$("searchInput").addEventListener("keydown",event=>{
+ if(event.key==="Enter")searchUser($("searchInput").value);
+});
 
-  document.getElementById("signOutBtn").onclick = async () => {
-
-    if (stopListening) {
-      stopListening();
-      stopListening = null;
-    }
-
-    await signOut(auth);
-
-  };
-
+$("signOutBtn").onclick=()=>signOut(auth);
 </script>
-
 </body>
 </html>
