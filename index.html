@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,30 @@
 <style>
 :root{--bg:#080b16;--panel:#11182a;--panel2:#171f34;--line:#293653;--text:#f4f2ff;--muted:#9ba9c2;--purple:#8957ff;--cyan:#39dff2;--pink:#ff4fa3}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#32205b 0,transparent 38%),radial-gradient(ellipse at 90% 15%,#103d51 0,transparent 32%),var(--bg);color:var(--text);font:15px Arial,sans-serif;min-height:100vh}
-button,input,textarea,select{font:inherit}button{border:0;border-radius:11px;padding:11px 14px;background:linear-gradient(110deg,var(--purple),#596eea);color:white;font-weight:700;cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}input,textarea,select{width:100%;padding:12px;background:#0b1221;color:white;border:1px solid var(--line);border-radius:10px;margin:6px 0;outline:none}textarea{min-height:75px;resize:vertical}label{font-size:12px;color:var(--muted)}header{height:64px;padding:0 15px;display:flex;align-items:center;gap:12px;background:#0b1120eF;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5;backdrop-filter:blur(14px)}.logo{font-weight:1000;font-size:22px;letter-spacing:1px;color:#d9caff}.logo span{color:var(--cyan)}.right{margin-left:auto}main{max-width:1000px;margin:auto;padding:16px 12px 100px}.panel{background:linear-gradient(145deg,#151d31ee,#0e1626f2);border:1px solid #34415f;border-radius:17px;padding:16px;margin-bottom:14px;box-shadow:0 10px 35px #0003}h2{font-size:19px;color:#d8c9ff;margin:0 0 12px}h3{font-size:15px;margin:0 0 8px}.muted{color:var(--muted);font-size:13px;line-height:1.5}.notice{color:#ffd58a;font-size:13px;line-height:1.5}.hidden{display:none!important}.tabs{display:flex;gap:7px;overflow:auto;margin:12px 0}.tabs button{white-space:nowrap;background:#1b2940;color:#b7c4d9}.tabs button.active{background:linear-gradient(100deg,var(--purple),#416edb);color:white}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}.tile{background:#0c1424;border:1px solid var(--line);border-radius:13px;padding:14px}.tile strong{display:block;margin-bottom:7px}.row{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}.row:last-child{border:0}.grow{flex:1;min-width:0}.avatar{width:46px;height:46px;display:grid;place-items:center;border-radius:50%;font-weight:900;background:linear-gradient(135deg,var(--purple),var(--cyan));flex-shrink:0}.actions{display:flex;gap:6px;flex-wrap:wrap}.small{font-size:12px;padding:8px 10px}.secondary{background:#293650}.danger{background:#9c3d61}.success{background:#137f70}.hero{text-align:center;padding:25px 12px 16px}.hero .mark{font-size:48px;filter:drop-shadow(0 0 18px #8e5bff)}.hero h1{font-size:clamp(29px,7vw,48px);margin:8px 0;background:linear-gradient(90deg,#e0c9ff,#63e9f4,#ff80bd);background-clip:text;color:transparent}.hero-art{min-height:180px;border-radius:15px;margin:16px 0;background:linear-gradient(120deg,#140e2a88,#071c2c99),url('https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1200') center/cover;display:grid;place-items:center;border:1px solid #7353ad}.hero-art span{font-size:40px;text-shadow:0 4px 20px #000}.auth{max-width:450px;margin:12px auto}.auth button{width:100%;margin:5px 0;padding:13px}.google{background:#26334a}.email{background:linear-gradient(100deg,var(--purple),#2c9ec8)}.link{background:none;color:#75e7f3;padding:8px}.nav{position:fixed;bottom:0;left:0;right:0;z-index:6;background:#0b1120f5;border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:8px 2px calc(8px + env(safe-area-inset-bottom));backdrop-filter:blur(12px)}.nav button{background:none;color:#aebbd0;font-size:11px;padding:7px 9px}.nav button.active{color:#d7c4ff}.nav span{display:block;font-size:19px;margin-bottom:3px}.bubble{padding:10px 13px;border-radius:14px;background:#263650;margin:8px 0;max-width:85%;overflow-wrap:anywhere;white-space:pre-wrap}.mine{margin-left:auto;background:#6441a4}.bubble small{display:block;font-size:10px;color:#d0c7e8;margin-top:5px}.messages{height:42vh;min-height:230px;overflow:auto;padding:10px;background:#080e19;border-radius:12px}.send{display:flex;gap:7px}.send input{flex:1;min-width:0}.pill{display:inline-block;padding:5px 8px;border-radius:20px;background:#263650;color:#bfeef3;font-size:11px;margin:3px}.status{color:#6ce6b8;font-size:12px}.empty{text-align:center;color:var(--muted);padding:20px;font-size:13px}.stat{font-size:25px;font-weight:900;color:#d9c6ff}.cover{height:100px;border-radius:12px;background:linear-gradient(120deg,#442a83,#0d667a);margin-bottom:12px}
+button,input,textarea,select{font:inherit}button{border:0;border-radius:11px;padding:11px 14px;background:linear-gradient(110deg,var(--purple),#596eea);color:white;font-weight:700;cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}input,textarea,select{width:100%;padding:12px;background:#0b1221;color:white;border:1px solid var(--line);border-radius:10px;margin:6px 0;outline:none}textarea{min-height:75px;resize:vertical}label{font-size:12px;color:var(--muted)}
+header{height:64px;padding:0 15px;display:flex;align-items:center;gap:12px;background:#0b1120eF;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5;backdrop-filter:blur(14px)}
+.logo{font-weight:1000;font-size:22px;letter-spacing:1px;color:#d9caff}.logo span{color:var(--cyan)}.right{margin-left:auto}
+main{max-width:1000px;margin:auto;padding:16px 12px 100px}.panel{background:linear-gradient(145deg,#151d31ee,#0e1626f2);border:1px solid #34415f;border-radius:17px;padding:16px;margin-bottom:14px}
+h2{font-size:19px;color:#d8c9ff;margin:0 0 12px}h3{font-size:15px;margin:0 0 8px}.muted{color:var(--muted);font-size:13px;line-height:1.5}.notice{color:#ffd58a;font-size:13px;line-height:1.5}.hidden{display:none!important}
+.tabs{display:flex;gap:7px;overflow:auto;margin:12px 0}.tabs button{white-space:nowrap;background:#1b2940;color:#b7c4d9}.tabs button.active{background:linear-gradient(100deg,var(--purple),#416edb);color:white}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}.tile{background:#0c1424;border:1px solid var(--line);border-radius:13px;padding:14px}.tile strong{display:block;margin-bottom:7px}
+.row{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}.row:last-child{border:0}.grow{flex:1;min-width:0}.avatar{width:46px;height:46px;display:grid;place-items:center;border-radius:50%;font-weight:900;background:linear-gradient(135deg,var(--purple),var(--cyan));flex-shrink:0}
+.actions{display:flex;gap:6px;flex-wrap:wrap}.small{font-size:12px;padding:8px 10px}.secondary{background:#293650}.danger{background:#9c3d61}.success{background:#137f70}
+.hero{text-align:center;padding:25px 12px 16px}.hero .mark{font-size:48px;filter:drop-shadow(0 0 18px #8e5bff)}.hero h1{font-size:clamp(29px,7vw,48px);margin:8px 0;background:linear-gradient(90deg,#e0c9ff,#63e9f4,#ff80bd);background-clip:text;color:transparent}
+.hero-art{min-height:180px;border-radius:15px;margin:16px 0;background:linear-gradient(120deg,#140e2a88,#071c2c99),url('https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1200') center/cover;display:grid;place-items:center;border:1px solid #7353ad}.hero-art span{font-size:40px;text-shadow:0 4px 20px #000}
+.auth{max-width:450px;margin:12px auto}.auth button{width:100%;margin:5px 0;padding:13px}.google{background:#26334a}.email{background:linear-gradient(100deg,var(--purple),#2c9ec8)}.link{background:none;color:#75e7f3;padding:8px}
+.nav{position:fixed;bottom:0;left:0;right:0;z-index:6;background:#0b1120f5;border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:8px 2px calc(8px + env(safe-area-inset-bottom));backdrop-filter:blur(12px)}.nav button{background:none;color:#aebbd0;font-size:11px;padding:7px 9px}.nav button.active{color:#d7c4ff}.nav span{display:block;font-size:19px;margin-bottom:3px}
+.bubble{padding:10px 13px;border-radius:14px;background:#263650;margin:8px 0;max-width:85%;overflow-wrap:anywhere;white-space:pre-wrap}.mine{margin-left:auto;background:#6441a4}.bubble small{display:block;font-size:10px;color:#d0c7e8;margin-top:5px}
+.messages{height:42vh;min-height:230px;overflow:auto;padding:10px;background:#080e19;border-radius:12px}.send{display:flex;gap:7px}.send input{flex:1;min-width:0}.pill{display:inline-block;padding:5px 8px;border-radius:20px;background:#263650;color:#bfeef3;font-size:11px;margin:3px}
+.status{color:#6ce6b8;font-size:12px}.empty{text-align:center;color:var(--muted);padding:20px;font-size:13px}.stat{font-size:25px;font-weight:900;color:#d9c6ff}.cover{height:100px;border-radius:12px;background:linear-gradient(120deg,#442a83,#0d667a);margin-bottom:12px}
+
+/* Back button */
+#backButton{
+ background:linear-gradient(100deg,#ff4fa3,#8957ff);
+ color:white;border:1px solid #ff80bd;border-radius:10px;
+ padding:9px 13px;white-space:nowrap;font-size:13px;
+}
+#backButton:active{transform:scale(.96)}
 
 /* Neon pink sign-in screen */
 body:has(#welcome:not(.hidden)){background:#080308;color:#fff}
@@ -70,11 +94,14 @@ body:has(#welcome:not(.hidden)) main{max-width:none;padding:0;min-height:100vh}
  .auth-mobile-brand{display:block}
  .auth-heading h2{font-size:26px}
 }
-
 </style>
 </head>
 <body>
-<header><div class="logo">CHAT<span>ZONE</span></div><div class="right"><button id="headerGames" class="secondary small">🎮 Gaming Hub</button></div></header>
+<header>
+<button id="backButton" class="hidden">← Back</button>
+<div class="logo">CHAT<span>ZONE</span></div>
+<div class="right"><button id="headerGames" class="secondary small">🎮 Gaming Hub</button></div>
+</header>
 <main>
 <section id="welcome" class="auth-screen">
  <div class="auth-visual">
@@ -141,22 +168,48 @@ body:has(#welcome:not(.hidden)) main{max-width:none;padding:0;min-height:100vh}
 <section id="newsPage" class="hidden panel"><h2>📰 Gaming news</h2><button id="refreshNews">Refresh headlines</button><div id="newsItems"></div></section>
 </main>
 <nav id="nav" class="nav hidden"><button class="active" data-page="chats"><span>💬</span>Chats</button><button data-page="friends"><span>👥</span>Friends</button><button data-page="games"><span>🎮</span>Games</button><button data-page="community"><span>🌐</span>Community</button><button data-page="settings"><span>⚙</span>Settings</button></nav>
+
 <script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
 import{getAuth,GoogleAuthProvider,signInWithRedirect,onAuthStateChanged,signOut,createUserWithEmailAndPassword,signInWithEmailAndPassword,sendPasswordResetEmail}from"https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
 import{getDatabase,ref,get,set,remove,push,onValue,onDisconnect,serverTimestamp,runTransaction}from"https://www.gstatic.com/firebasejs/13.4.0/firebase-database.js";
 const firebaseConfig={apiKey:"AIzaSyBLjm_Fm3rf6xArbVQm8NsHeMZAQAtYho8",authDomain:"gamersnet-b9c7d.firebaseapp.com",databaseURL:"https://gamersnet-b9c7d-default-rtdb.firebaseio.com",projectId:"gamersnet-b9c7d",storageBucket:"gamersnet-b9c7d.firebasestorage.app",messagingSenderId:"706719567863",appId:"1:706719567863:web:c45901a666cea84b5368f2",measurementId:"G-L3QQF7E0WZ"};
 const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getDatabase(app),provider=new GoogleAuthProvider(),$=id=>document.getElementById(id),r=(...p)=>ref(db,p.join("/"));
-let user=null,profile=null,friend=null,friendship=null,chatStop=null,requestStop=null,friendStop=null,feedStops=[],mode="login";
+let user=null,profile=null,friend=null,friendship=null,chatStop=null,requestStop=null,friendStop=null,feedStops=[],mode="login",lastTab="chats";
 const safe=(s)=>String(s??"").replace(/[<>&"]/g,c=>({"<":"&lt;",">":"&gt;","&":"&amp;",'"':"&quot;"}[c]));
 function show(id,on){$(id).classList.toggle("hidden",!on)}
-function page(id){["welcome","setup","app","chatPage","settings","newsPage"].forEach(x=>show(x,x===id));show("nav",["app","settings"].includes(id));}
-function tab(id){document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("hidden",x.id!==id));document.querySelectorAll("[data-tab]").forEach(x=>x.classList.toggle("active",x.dataset.tab===id));page("app")}
+function page(id){
+ ["welcome","setup","app","chatPage","settings","newsPage"].forEach(x=>show(x,x===id));
+ show("nav",["app","settings"].includes(id));
+ show("backButton",!["welcome","setup"].includes(id));
+}
+function tab(id){
+ lastTab=id;
+ document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("hidden",x.id!==id));
+ document.querySelectorAll("[data-tab]").forEach(x=>x.classList.toggle("active",x.dataset.tab===id));
+ page("app");
+}
+function goBack(){
+ if(!$("chatPage").classList.contains("hidden")){
+  page("app");tab(lastTab);return;
+ }
+ if(!$("settings").classList.contains("hidden")){
+  page("app");tab(lastTab);return;
+ }
+ if(!$("newsPage").classList.contains("hidden")){
+  page("app");tab("games");return;
+ }
+ if(!$("app").classList.contains("hidden")){
+  tab("chats");
+ }
+}
+$("backButton").onclick=goBack;
+
 function row(parent,title,sub,buttons=[]){let d=document.createElement("div");d.className="row";let av=document.createElement("div");av.className="avatar";av.textContent=(title||"?")[0].toUpperCase();let info=document.createElement("div");info.className="grow";let b=document.createElement("strong");b.textContent=title;let sm=document.createElement("div");sm.className="muted";sm.textContent=sub||"";info.append(b,sm);d.append(av,info);let acts=document.createElement("div");acts.className="actions";buttons.forEach(x=>{let bt=document.createElement("button");bt.textContent=x[0];bt.className="small "+(x[2]||"");bt.onclick=x[1];acts.append(bt)});d.append(acts);parent.append(d)}
 function msg(id,s){$(id).textContent=s}
 $("google").onclick=()=>signInWithRedirect(auth,provider).catch(e=>msg("authMsg",e.message));
 $("showEmail").onclick=()=>show("emailBox",true);
-$("switchMode").onclick=()=>{mode=mode==="register"?"login":"register";$("emailTitle").textContent=mode==="register"?"Create your account":"Welcome Back";$("emailGo").innerHTML=mode==="register"?"Create Account <span>♥</span>":"Sign In <span>♥</span>";$("modePrompt").textContent=mode==="register"?"Already have an account?":"Don't have an account?";$("switchMode").textContent=mode==="register"?"Sign In ♡":"Sign Up ♡";$("password").autocomplete=mode==="register"?"new-password":"current-password";show("confirmWrap",mode==="register");$("confirm").required=mode==="register"}; 
+$("switchMode").onclick=()=>{mode=mode==="register"?"login":"register";$("emailTitle").textContent=mode==="register"?"Create your account":"Welcome Back";$("emailGo").innerHTML=mode==="register"?"Create Account <span>♥</span>":"Sign In <span>♥</span>";$("modePrompt").textContent=mode==="register"?"Already have an account?":"Don't have an account?";$("switchMode").textContent=mode==="register"?"Sign In ♡":"Sign Up ♡";$("password").autocomplete=mode==="register"?"new-password":"current-password";show("confirmWrap",mode==="register");$("confirm").required=mode==="register"};
 $("togglePassword").onclick=()=>{let field=$("password"),visible=field.type==="password";field.type=visible?"text":"password";$("togglePassword").textContent=visible?"◎":"◉";$("togglePassword").setAttribute("aria-label",visible?"Hide password":"Show password")};
 $("emailGo").onclick=async()=>{let e=$("email").value.trim(),p=$("password").value;if(!e||p.length<6)return msg("authMsg","Enter a valid email and a password with at least 6 characters.");if(mode==="register"&&p!==$("confirm").value)return msg("authMsg","Passwords do not match.");try{if(mode==="register")await createUserWithEmailAndPassword(auth,e,p);else await signInWithEmailAndPassword(auth,e,p)}catch(x){msg("authMsg",x.message)}};
 $("forgot").onclick=async()=>{try{await sendPasswordResetEmail(auth,$("email").value.trim());msg("authMsg","Password reset email sent.")}catch(e){msg("authMsg",e.message)}};
@@ -168,7 +221,7 @@ async function presence(){let p=r("presence",user.uid);await onDisconnect(p).set
 document.querySelectorAll("[data-tab]").forEach(b=>b.onclick=()=>tab(b.dataset.tab));
 document.querySelectorAll("[data-page]").forEach(b=>b.onclick=()=>{if(b.dataset.page==="settings")openSettings();else tab(b.dataset.page);document.querySelectorAll("[data-page]").forEach(x=>x.classList.toggle("active",x===b))});
 $("headerGames").onclick=()=>tab("games");$("openSettings").onclick=openSettings;
-function openSettings(){["Nick","User","Tag","Bio","Games","Platform"].forEach((x,i)=>{});$("editNick").value=profile.nickname||"";$("editUser").value=profile.username||"";$("editTag").value=profile.gamerTag||"";$("editBio").value=profile.bio||"";$("editGames").value=profile.games||"";$("editPlatform").value=profile.platform||"Mobile";$("theme").value=profile.theme||"purple";$("privacy").value=profile.privacy||"everyone";$("presenceSetting").value=profile.presenceVisible===false?"hidden":"online";page("settings")}
+function openSettings(){$("editNick").value=profile.nickname||"";$("editUser").value=profile.username||"";$("editTag").value=profile.gamerTag||"";$("editBio").value=profile.bio||"";$("editGames").value=profile.games||"";$("editPlatform").value=profile.platform||"Mobile";$("theme").value=profile.theme||"purple";$("privacy").value=profile.privacy||"everyone";$("presenceSetting").value=profile.presenceVisible===false?"hidden":"online";page("settings")}
 $("saveSettings").onclick=async()=>{let nick=$("editNick").value.trim(),name=$("editUser").value.trim().toLowerCase();if(nick.length<2||nick.length>20||!/^[a-z0-9_]{3,20}$/.test(name))return msg("settingsMsg","Check your display name and username.");try{let check=await get(r("usernames",name));if(check.exists()&&check.val()!==user.uid)return msg("settingsMsg","Username is already taken.");let old=profile.username;if(!check.exists())await set(r("usernames",name),user.uid);profile={...profile,nickname:nick,username:name,gamerTag:$("editTag").value.trim(),bio:$("editBio").value.trim(),games:$("editGames").value.trim(),platform:$("editPlatform").value};await set(r("profiles",user.uid),profile);if(old!==name)await remove(r("usernames",old));msg("settingsMsg","Profile updated.");$("myNick").textContent=nick;$("myHandle").textContent="@"+name;$("gamerCard").textContent=`${profile.gamerTag||nick} · ${profile.platform} · ${profile.games}`}catch(e){msg("settingsMsg",e.message)}};
 $("saveTheme").onclick=()=>{let v=$("theme").value;let colors={purple:["#8957ff","#39dff2"],cyan:["#20b8d0","#62eaff"],pink:["#ff4fa3","#8a58ff"],green:["#35bd78","#b5f36b"]};document.documentElement.style.setProperty("--purple",colors[v][0]);document.documentElement.style.setProperty("--cyan",colors[v][1]);profile.theme=v;set(r("profiles",user.uid),profile).catch(e=>msg("settingsMsg",e.message))};
 $("savePrivacy").onclick=async()=>{profile.privacy=$("privacy").value;profile.presenceVisible=$("presenceSetting").value==="online";try{await set(r("profiles",user.uid),profile);await presence();msg("settingsMsg","Privacy settings saved.")}catch(e){msg("settingsMsg",e.message)}};
@@ -180,7 +233,7 @@ function listenRequests(){requestStop=onValue(r("requests",user.uid),async s=>{l
 async function accept(sender){try{let q=await get(r("requests",user.uid,sender));if(!q.exists())return;let f={recipientUid:user.uid,senderUid:sender,createdAt:Date.now()};await set(r("friendships",sender,user.uid),f);await set(r("friendships",user.uid,sender),f);await remove(r("requests",user.uid,sender));alert("Friend added!")}catch(e){alert("Could not accept: "+e.message)}}
 function listenFriends(){friendStop=onValue(r("friendships",user.uid),async s=>{let out=$("friendList");out.replaceChildren();if(!s.exists()){out.textContent="No friends yet.";return}for(let [uid,f] of Object.entries(s.val())){let p=(await get(r("profiles",uid))).val();if(p)row(out,p.nickname,"@"+p.username,[["Message",()=>openChat(uid,f,p)]])}loadLists()})}
 async function loadLists(){let out=$("chatList");out.replaceChildren();try{let s=await get(r("friendships",user.uid));if(!s.exists()){out.textContent="No chats yet. Find gamers and add friends.";return}for(let [uid,f] of Object.entries(s.val())){let p=(await get(r("profiles",uid))).val();if(p)row(out,p.nickname,"@"+p.username,[["Open chat",()=>openChat(uid,f,p)]])}}catch(e){out.textContent=e.message}}
-function openChat(uid,f,p){friend=uid;friendship=f;page("chatPage");$("chatTitle").textContent=p.nickname;$("chatMessages").textContent="Loading…";if(chatStop)chatStop();let cr=r("chats",f.recipientUid,f.senderUid,"messages");chatStop=onValue(cr,s=>{let out=$("chatMessages");out.replaceChildren();if(!s.exists()){out.textContent="No messages yet. Say hello!";return}Object.values(s.val()).sort((a,b)=>a.createdAt-b.createdAt).forEach(m=>{let d=document.createElement("div");d.className="bubble"+(m.senderUid===user.uid?" mine":"");let t=document.createElement("div");t.textContent=m.text;let sm=document.createElement("small");sm.textContent=new Date(m.createdAt||Date.now()).toLocaleString();d.append(t,sm);out.append(d)});out.scrollTop=out.scrollHeight},e=>{$("chatMessages").textContent=e.message})}
+function openChat(uid,f,p){lastTab=document.querySelector(".tab:not(.hidden)")?.id||"chats";friend=uid;friendship=f;page("chatPage");$("chatTitle").textContent=p.nickname;$("chatMessages").textContent="Loading…";if(chatStop)chatStop();let cr=r("chats",f.recipientUid,f.senderUid,"messages");chatStop=onValue(cr,s=>{let out=$("chatMessages");out.replaceChildren();if(!s.exists()){out.textContent="No messages yet. Say hello!";return}Object.values(s.val()).sort((a,b)=>a.createdAt-b.createdAt).forEach(m=>{let d=document.createElement("div");d.className="bubble"+(m.senderUid===user.uid?" mine":"");let t=document.createElement("div");t.textContent=m.text;let sm=document.createElement("small");sm.textContent=new Date(m.createdAt||Date.now()).toLocaleString();d.append(t,sm);out.append(d)});out.scrollTop=out.scrollHeight},e=>{$("chatMessages").textContent=e.message})}
 async function send(){let text=$("chatInput").value.trim();if(!text||!friendship)return;try{await push(r("chats",friendship.recipientUid,friendship.senderUid,"messages"),{senderUid:user.uid,text,createdAt:Date.now()});$("chatInput").value=""}catch(e){alert("Message failed: "+e.message)}}
 $("sendMessage").onclick=send;$("chatInput").addEventListener("keydown",e=>{if(e.key==="Enter")send()});
 function listenPath(path,element,render){let stop=onValue(r(...path),s=>render(element,s));feedStops.push(stop)}
@@ -194,7 +247,7 @@ $("postChallenge").onclick=async()=>{let title=$("challengeTitle").value.trim(),
 $("createRoom").onclick=async()=>{let name=$("roomName").value.trim(),game=$("roomGame").value.trim();if(!name||!game)return alert("Enter a room name and game.");try{await push(r("gaming","rooms"),{uid:user.uid,nickname:profile.nickname,name,game,createdAt:Date.now()});$("roomName").value=$("roomGame").value=""}catch(e){alert(e.message)}};
 $("dailyReward").onclick=async()=>{let day=new Date().toISOString().slice(0,10);try{let tx=await runTransaction(r("dailyClaims",user.uid,day),v=>v?undefined:{claimed:true,at:Date.now()});if(!tx.committed)return alert("Already claimed today.");let ptx=await runTransaction(r("profiles",user.uid),p=>{if(!p)return p;p.points=(p.points||0)+10;return p});profile=ptx.snapshot.val();$("myPoints").textContent=(profile.points||0)+" pts";loadLeaderboard()}catch(e){alert("Could not claim reward: "+e.message)}};
 function loadLeaderboard(){listenPath(["profiles"],"leaderboard",(id,s)=>{let out=$(id);out.replaceChildren();if(!s.exists())return;Object.entries(s.val()).sort((a,b)=>(b[1].points||0)-(a[1].points||0)).slice(0,10).forEach(([uid,p],i)=>{let d=document.createElement("div");d.className="row";d.textContent=`${i+1}. ${p.nickname||"Gamer"} — ${p.points||0} pts`;out.append(d)})})}
-$("openNews").onclick=()=>{page("newsPage");loadNews()};$("refreshNews").onclick=loadNews;
+$("openNews").onclick=()=>{lastTab=document.querySelector(".tab:not(.hidden)")?.id||"games";page("newsPage");loadNews()};$("refreshNews").onclick=loadNews;
 async function loadNews(){let out=$("newsItems");out.textContent="Loading headlines…";try{let url="https://news.google.com/rss/search?q=video+games+gaming+updates&hl=en-US&gl=US&ceid=US:en";let res=await fetch("https://api.allorigins.win/raw?url="+encodeURIComponent(url));if(!res.ok)throw Error("Feed unavailable");let xml=new DOMParser().parseFromString(await res.text(),"text/xml");let items=[...xml.querySelectorAll("item")].slice(0,12);out.replaceChildren();items.forEach(item=>{let a=document.createElement("a");a.textContent=item.querySelector("title")?.textContent||"Gaming news";a.href=item.querySelector("link")?.textContent||"#";a.target="_blank";a.rel="noopener noreferrer";a.style="display:block;color:#d7c4ff;margin:12px 0";out.append(a)});if(!items.length)throw Error("No headlines")}catch(e){out.textContent="Gaming news is temporarily unavailable. Try again later."}}
 </script>
 </body>
