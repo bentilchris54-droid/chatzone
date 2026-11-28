@@ -3,678 +3,299 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#080914">
-<title>ChatZone | Gaming Social</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChatZone</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-
-:root{
- --bg:#080914;
- --panel:#111326;
- --purple:#9b5cff;
- --cyan:#36e5ff;
- --text:#f6f4ff;
- --muted:#9296b5;
- --border:rgba(155,92,255,.2);
-}
-
 *{box-sizing:border-box}
-
-body{
- margin:0;
- background:
- radial-gradient(ellipse at 10% 0%,#21113f 0%,transparent 40%),
- radial-gradient(ellipse at 90% 30%,#071f36 0%,transparent 35%),
- var(--bg);
- color:var(--text);
- font-family:Inter,Arial,sans-serif;
- min-height:100vh;
-}
-
-header{
- height:76px;
- padding:0 6%;
- display:flex;
- align-items:center;
- justify-content:space-between;
- background:rgba(8,9,20,.9);
- border-bottom:1px solid var(--border);
- position:sticky;
- top:0;
- z-index:5;
-}
-
-.logo{
- font-size:23px;
- font-weight:900;
- letter-spacing:-1px;
- background:linear-gradient(90deg,var(--purple),var(--cyan));
- background-clip:text;
- -webkit-background-clip:text;
- color:transparent;
-}
-
-.logo span{color:white}
-
-.header-right{
- display:flex;
- align-items:center;
- gap:10px;
- color:var(--cyan);
- font-size:12px;
- font-weight:800;
-}
-
-.online-dot{
- width:8px;
- height:8px;
- border-radius:50%;
- background:#37ed9a;
- box-shadow:0 0 12px #37ed9a;
-}
-
-main{
- max-width:1100px;
- margin:auto;
- padding:45px 20px;
-}
-
-.hero{
- text-align:center;
- margin:25px auto 38px;
-}
-
-.eyebrow{
- color:var(--cyan);
- font-size:11px;
- font-weight:800;
- letter-spacing:3px;
-}
-
-.hero h1{
- font-size:clamp(35px,7vw,64px);
- line-height:1.05;
- margin:17px 0;
- letter-spacing:-3px;
-}
-
-.gradient{
- background:linear-gradient(90deg,#b28aff,#4ce7ff);
- -webkit-background-clip:text;
- background-clip:text;
- color:transparent;
-}
-
-.hero p{
- color:var(--muted);
- max-width:500px;
- margin:auto;
- line-height:1.8;
- font-size:14px;
-}
-
-.layout{
- display:grid;
- grid-template-columns:1.2fr .8fr;
- gap:20px;
- align-items:start;
-}
-
-.card{
- background:linear-gradient(145deg,rgba(24,25,49,.97),rgba(12,15,31,.98));
- border:1px solid var(--border);
- border-radius:20px;
- padding:25px;
- box-shadow:0 15px 45px #0005;
-}
-
-.card h2{
- font-size:20px;
- margin:0 0 8px;
-}
-
-.subtitle{
- color:var(--muted);
- font-size:13px;
- line-height:1.7;
- margin-bottom:20px;
-}
-
-input{
- width:100%;
- padding:15px;
- border-radius:12px;
- background:#090c1b;
- border:1px solid #343452;
- outline:none;
- color:white;
- font-size:14px;
- margin-top:10px;
-}
-
-input:focus{
- border-color:var(--cyan);
- box-shadow:0 0 15px #36e5ff20;
-}
-
-button{
- width:100%;
- padding:15px;
- border:0;
- border-radius:12px;
- margin-top:13px;
- color:white;
- font-weight:800;
- font-size:13px;
- cursor:pointer;
- background:linear-gradient(100deg,#813bdf,#5143d8);
- box-shadow:0 5px 20px #7539d933;
- transition:.2s;
-}
-
-button:hover{
- transform:translateY(-2px);
- filter:brightness(1.15);
-}
-
-button:disabled{opacity:.5}
-
-.google{
- background:white;
- color:#171717;
- box-shadow:none;
-}
-
-.secondary{
- background:#202641;
- border:1px solid #373d61;
- box-shadow:none;
-}
-
-.cyan-button{
- background:linear-gradient(100deg,#087eaa,#16b7c9);
-}
-
-.avatar{
- width:75px;
- height:75px;
- display:grid;
- place-items:center;
- border-radius:22px;
- font-size:32px;
- background:linear-gradient(140deg,#713bd4,#087f9f);
- box-shadow:0 0 30px #8b5cf644;
- margin-bottom:17px;
-}
-
-.username{
- color:var(--cyan);
- font-weight:800;
-}
-
-.small{
- color:var(--muted);
- font-size:12px;
- line-height:1.7;
-}
-
-#status,#setupStatus{
- color:var(--cyan);
- font-size:13px;
- margin-top:15px;
- overflow-wrap:anywhere;
-}
-
-#welcome,#profileSetup,#app{display:none}
-
-.profile-box{
- padding:16px;
- margin-top:15px;
- background:#0b1021;
- border:1px solid #343451;
- border-radius:14px;
-}
-
-.result-name{
- font-size:16px;
- font-weight:800;
-}
-
-.section-label{
- font-size:10px;
- letter-spacing:2px;
- font-weight:800;
- color:var(--purple);
- margin-bottom:15px;
-}
-
-footer{
- text-align:center;
- color:#676b8c;
- font-size:11px;
- padding:35px 15px;
-}
-
-@media(max-width:750px){
- .layout{grid-template-columns:1fr}
- main{padding:25px 15px}
- header{padding:0 18px}
- .hero{margin-top:20px}
- .card{padding:21px}
-}
+body{margin:0;background:#080812;color:#f5f3ff;font-family:Arial,sans-serif}
+header{padding:18px 20px;background:#101020;border-bottom:1px solid #282044;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:23px;font-weight:bold;color:#b58aff}
+.logo span{color:#42e8ff}
+button{border:0;border-radius:9px;padding:12px 16px;background:#8b5cf6;color:white;font-weight:bold;cursor:pointer}
+button:disabled{opacity:.5;cursor:not-allowed}
+input{width:100%;padding:13px;margin:8px 0;background:#141426;border:1px solid #383052;border-radius:9px;color:white;outline:none}
+main{max-width:850px;margin:25px auto;padding:15px}
+.panel{background:#111120;border:1px solid #292343;border-radius:15px;padding:20px;margin-bottom:18px}
+h2{color:#c3a4ff;margin-top:0}
+small,.muted{color:#9995ae}
+.hidden{display:none!important}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px}
+.tabs button{background:#211b35}
+.tabs button.active{background:#8b5cf6}
+.item{padding:13px;border-bottom:1px solid #292343;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.item:last-child{border:0}
+.item button{padding:8px 11px}
+a{color:#55ddff;overflow-wrap:anywhere}
+#messages{height:260px;overflow-y:auto;background:#090914;border-radius:10px;padding:12px;margin:12px 0}
+.message{padding:9px 12px;background:#24203b;border-radius:10px;margin:7px 0;max-width:85%;overflow-wrap:anywhere}
+.notice{color:#ffcf70;font-size:13px;line-height:1.5}
 </style>
 </head>
-
 <body>
-
 <header>
- <div class="logo">CHAT<span>ZONE</span> ⚡</div>
- <div class="header-right">
-  <span class="online-dot"></span>
-  GAMING SOCIAL
- </div>
+ <div class="logo">CHAT<span>ZONE</span></div>
+ <button id="signInBtn">Google Sign In</button>
 </header>
 
 <main>
+ <section id="welcome" class="panel">
+  <h2>Welcome to ChatZone</h2>
+  <p class="muted">Your username. Your people. Your conversations.</p>
+  <p>Sign in with Google to get started.</p>
+  <button id="welcomeSignIn">Sign in with Google</button>
+ </section>
 
-<section class="hero">
- <div class="eyebrow">YOUR WORLD. YOUR PEOPLE.</div>
- <h1>ENTER THE <span class="gradient">ZONE.</span></h1>
- <p>Meet new players, build your circle and connect with people through ChatZone.</p>
-</section>
+ <section id="setup" class="panel hidden">
+  <h2>Create your profile</h2>
+  <p class="muted">Choose a unique username.</p>
+  <input id="usernameInput" placeholder="Username (3–20 characters)">
+  <input id="nicknameInput" placeholder="Display name">
+  <button id="saveProfile">Create profile</button>
+  <p id="setupStatus" class="notice"></p>
+ </section>
 
-<section class="card" id="welcome">
- <div class="layout">
-  <div>
-   <div class="eyebrow">WELCOME PLAYER</div>
-   <h1 style="font-size:30px;margin:15px 0">Your next connection starts here.</h1>
-   <p class="subtitle">Sign in with Google and create your own gaming identity.</p>
-   <button class="google" id="googleBtn">🌐 Continue with Google</button>
-   <p id="status">Ready when you are.</p>
+ <section id="app" class="hidden">
+  <section class="panel">
+   <h2>Your profile</h2>
+   <p id="myName"></p>
+   <p id="myUsername" class="muted"></p>
+   <button id="shareProfile">Share profile link</button>
+   <button id="changeUsername" style="background:#292343">Change username</button>
+   <button id="signOut" style="background:#393047">Sign out</button>
+   <p id="profileStatus" class="notice"></p>
+  </section>
+
+  <div class="tabs">
+   <button class="active" data-tab="search">Find people</button>
+   <button data-tab="requests">Requests</button>
+   <button data-tab="friends">Friends</button>
+   <button data-tab="chat">Messages</button>
   </div>
-  <div style="display:flex;align-items:center;justify-content:center">
-   <div style="font-size:100px;filter:drop-shadow(0 0 25px #9b5cff)">🎮</div>
-  </div>
- </div>
-</section>
 
-<section class="card" id="profileSetup">
- <div class="eyebrow">PLAYER REGISTRATION</div>
- <h2 style="margin-top:15px">Create your identity</h2>
- <p class="subtitle">Choose a unique username that people can use to find you.</p>
- <div class="avatar">👾</div>
- <input id="usernameInput" maxlength="20" placeholder="YourUsername">
- <p class="small">3–20 characters. Letters, numbers and underscores only.</p>
- <button id="createBtn">CREATE MY PROFILE ⚡</button>
- <p id="setupStatus"></p>
-</section>
+  <section id="search" class="panel tab">
+   <h2>Find people</h2>
+   <input id="searchInput" placeholder="Search username">
+   <button id="searchBtn">Search</button>
+   <div id="searchResults"></div>
+  </section>
 
-<section id="app">
- <div class="layout">
+  <section id="requests" class="panel tab hidden">
+   <h2>Friend requests</h2>
+   <p class="notice">Friend request actions will be enabled after the secure backend is installed.</p>
+   <div id="requestList"></div>
+  </section>
 
-  <div class="card">
-   <div class="section-label">PLAYER PROFILE</div>
-   <div class="avatar">👾</div>
-   <h2 id="displayName">Welcome, Player</h2>
-   <p class="username" id="displayUsername">@username</p>
+  <section id="friends" class="panel tab hidden">
+   <h2>Your friends</h2>
+   <div id="friendList"></div>
+  </section>
 
-   <div class="profile-box">
-    <p class="small">YOUR PERSONAL PROFILE LINK</p>
-    <input id="profileLink" readonly>
-    <button class="cyan-button" id="shareBtn">↗ SHARE MY PROFILE</button>
+  <section id="chat" class="panel tab hidden">
+   <h2>Private messages</h2>
+   <p class="muted">Choose a friend to open a conversation.</p>
+   <div id="messages">
+    <p class="muted">Your conversations will appear here after secure messaging is connected.</p>
    </div>
-
-   <button class="secondary" id="changeBtn">✎ CHANGE USERNAME</button>
-   <button class="secondary" id="signOutBtn">SIGN OUT</button>
-  </div>
-
-  <div class="card">
-   <div class="section-label">DISCOVER PLAYERS</div>
-   <h2>Find your people.</h2>
-   <p class="subtitle">Search for someone using their exact ChatZone username.</p>
-
-   <input id="searchInput" placeholder="Enter username...">
-   <button id="searchBtn">⌕ SEARCH PLAYERS</button>
-   <div id="result"></div>
-
-   <div class="profile-box" style="margin-top:25px">
-    <div class="section-label">COMING NEXT</div>
-    <p>✦ Friend requests</p>
-    <p>✦ Private conversations</p>
-    <p>✦ Personal chat list</p>
-    <p class="small">These features are not active yet.</p>
-   </div>
-  </div>
-
- </div>
-</section>
-
+   <input id="messageInput" placeholder="Write a message..." disabled>
+   <button disabled>Send</button>
+   <hr style="border-color:#292343;margin:20px 0">
+   <h2>Paid message</h2>
+   <p class="muted">Send a message to someone before they accept your friend request.</p>
+   <button disabled>Paid Message — Coming Soon</button>
+   <p class="notice">Payments are not enabled. No money will be collected.</p>
+  </section>
+ </section>
 </main>
 
-<footer>CHATZONE © 2026 · CONNECT DIFFERENTLY ⚡</footer>
-
 <script type="module">
-
-import {initializeApp} from
-"https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
-
+import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
 import {
- getAuth,
- GoogleAuthProvider,
- signInWithRedirect,
- getRedirectResult,
- onAuthStateChanged,
- signOut
-} from
-"https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
-
+ getAuth, GoogleAuthProvider, signInWithRedirect,
+ getRedirectResult, onAuthStateChanged, signOut
+} from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
 import {
- getDatabase,
- ref,
- get,
- set,
- remove
-} from
-"https://www.gstatic.com/firebasejs/13.4.0/firebase-database.js";
+ getDatabase, ref, get, set, remove
+} from "https://www.gstatic.com/firebasejs/13.4.0/firebase-database.js";
 
-const firebaseConfig={
- apiKey:"AIzaSyBLjm_Fm3rf6xArbVQm8NsHeMZAQAtYho8",
- authDomain:"gamersnet-b9c7d.firebaseapp.com",
- databaseURL:"https://gamersnet-b9c7d-default-rtdb.firebaseio.com",
- projectId:"gamersnet-b9c7d",
- storageBucket:"gamersnet-b9c7d.firebasestorage.app",
- messagingSenderId:"706719567863",
- appId:"1:706719567863:web:c45901a666cea84b5368f2",
- measurementId:"G-L3QQF7E0WZ"
+const firebaseConfig = {
+ apiKey: "AIzaSyBLjm_Fm3rf6xArbVQm8NsHeMZAQAtYho8",
+ authDomain: "gamersnet-b9c7d.firebaseapp.com",
+ databaseURL: "https://gamersnet-b9c7d-default-rtdb.firebaseio.com",
+ projectId: "gamersnet-b9c7d",
+ storageBucket: "gamersnet-b9c7d.firebasestorage.app",
+ messagingSenderId: "706719567863",
+ appId: "1:706719567863:web:c45901a666cea84b5368f2",
+ measurementId: "G-L3QQF7E0WZ"
 };
 
-const app=initializeApp(firebaseConfig);
-const auth=getAuth(app);
-const db=getDatabase(app);
-const provider=new GoogleAuthProvider();
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getDatabase(app);
+const provider = new GoogleAuthProvider();
 
-const $=id=>document.getElementById(id);
+let currentUser = null;
+let myProfile = null;
 
-let currentUser=null;
-let currentProfile=null;
+const $ = id => document.getElementById(id);
+const show = (id, yes) => $(id).classList.toggle("hidden", !yes);
 
-function show(page){
- $("welcome").style.display=page==="welcome"?"block":"none";
- $("profileSetup").style.display=page==="setup"?"block":"none";
- $("app").style.display=page==="app"?"block":"none";
-}
-
-function cleanUsername(value){
- return value.trim().toLowerCase();
-}
-
-function validUsername(value){
- return /^[a-z0-9_]{3,20}$/.test(value);
-}
-
-$("googleBtn").onclick=async()=>{
- $("status").textContent="Connecting to Google...";
- try{
-  await signInWithRedirect(auth,provider);
- }catch(error){
-  $("status").textContent=error.message;
- }
-};
-
-try{
- await getRedirectResult(auth);
-}catch(error){
- $("status").textContent="Sign-in error: "+error.message;
-}
-
-onAuthStateChanged(auth,async user=>{
- currentUser=user;
-
- if(!user){
-  currentProfile=null;
-  show("welcome");
-  return;
- }
-
- try{
-  const snap=await get(ref(db,"profiles/"+user.uid));
-  const profile=snap.val();
-
-  if(profile && profile.username){
-   currentProfile=profile;
-   showProfile();
-  }else{
-   show("setup");
-  }
-
-  const requested=new URLSearchParams(location.search).get("user");
-
-  if(requested && validUsername(cleanUsername(requested))){
-   $("searchInput").value=requested;
-   await searchUser(requested);
-  }
-
- }catch(error){
-  show("setup");
-  $("setupStatus").textContent="Could not load profile: "+error.message;
- }
-});
-
-async function saveUsername(raw){
-
- const username=cleanUsername(raw);
-
- if(!validUsername(username)){
-  throw new Error("Use 3–20 letters, numbers or underscores.");
- }
-
- const nameRef=ref(db,"usernames/"+username);
- const profileRef=ref(db,"profiles/"+currentUser.uid);
-
- const existing=await get(nameRef);
-
- if(existing.exists() && existing.val()!==currentUser.uid){
-  throw new Error("That username is taken. Try another.");
- }
-
- const oldUsername=currentProfile?.username;
-
- const alreadyOwned=
-  existing.exists() && existing.val()===currentUser.uid;
-
- // Reserve the username first.
- if(!alreadyOwned){
-  await set(nameRef,currentUser.uid);
- }
-
- try{
-
-  const newProfile={
-   username:username,
-   nickname:currentProfile?.nickname ||
-    currentUser.displayName || "Player",
-   createdAt:currentProfile?.createdAt || Date.now()
-  };
-
-  // Save the profile.
-  await set(profileRef,newProfile);
-
-  // Release the old username only after saving the new profile.
-  if(oldUsername && oldUsername!==username){
-   await remove(ref(db,"usernames/"+oldUsername));
-  }
-
-  currentProfile=newProfile;
-  showProfile();
-
- }catch(error){
-
-  // Undo a new reservation if saving the profile failed.
-  if(!alreadyOwned){
-   try{
-    await remove(nameRef);
-   }catch(cleanupError){
-    console.error("Username cleanup failed:",cleanupError);
-   }
-  }
-
-  throw error;
- }
-}
-
-$("createBtn").onclick=async()=>{
- $("createBtn").disabled=true;
- $("setupStatus").textContent="Creating your player profile...";
-
- try{
-  await saveUsername($("usernameInput").value);
- }catch(error){
-  $("setupStatus").textContent=
-   "ERROR: "+error.message;
- }finally{
-  $("createBtn").disabled=false;
- }
-};
-
-function showProfile(){
-
- show("app");
-
- $("displayName").textContent=
-  "Welcome, "+currentProfile.nickname;
-
- $("displayUsername").textContent=
-  "@"+currentProfile.username;
-
- const link=new URL(location.href);
- link.search="";
- link.searchParams.set("user",currentProfile.username);
-
- $("profileLink").value=link.toString();
-}
-
-$("changeBtn").onclick=async()=>{
-
- const newName=prompt(
-  "Enter your new username:",
-  currentProfile.username
- );
-
- if(newName===null)return;
-
- try{
-  await saveUsername(newName);
-  alert("Username updated!");
- }catch(error){
+async function login(){
+ try {
+  await signInWithRedirect(auth, provider);
+ } catch(error) {
   alert(error.message);
  }
-};
-
-$("shareBtn").onclick=async()=>{
-
- const link=$("profileLink").value;
-
- try{
-  if(navigator.share){
-   await navigator.share({
-    title:"Find me on ChatZone",
-    url:link
-   });
-  }else{
-   await navigator.clipboard.writeText(link);
-   alert("Profile link copied!");
-  }
- }catch(error){
-  if(error.name!=="AbortError"){
-   alert("Could not share link.");
-  }
- }
-};
-
-async function searchUser(raw){
-
- const username=cleanUsername(raw);
- $("result").replaceChildren();
-
- if(!validUsername(username)){
-  $("result").textContent="Enter a valid username.";
-  return;
- }
-
- try{
-
-  const userSnap=await get(
-   ref(db,"usernames/"+username)
-  );
-
-  if(!userSnap.exists()){
-   $("result").textContent="No player found.";
-   return;
-  }
-
-  const uid=userSnap.val();
-
-  if(uid===currentUser.uid){
-   $("result").textContent="That's your own profile!";
-   return;
-  }
-
-  const profileSnap=await get(
-   ref(db,"profiles/"+uid)
-  );
-
-  const profile=profileSnap.val();
-
-  if(!profile){
-   $("result").textContent="Profile not found.";
-   return;
-  }
-
-  const box=document.createElement("div");
-  box.className="profile-box";
-
-  const name=document.createElement("div");
-  name.className="result-name";
-  name.textContent=profile.nickname || "Player";
-
-  const handle=document.createElement("p");
-  handle.className="username";
-  handle.textContent="@"+profile.username;
-
-  const note=document.createElement("p");
-  note.className="small";
-  note.textContent=
-   "Player found on ChatZone. Friend requests are coming soon.";
-
-  box.append(name,handle,note);
-  $("result").appendChild(box);
-
- }catch(error){
-  $("result").textContent=
-   "Search failed: "+error.message;
- }
 }
+$("signInBtn").onclick = login;
+$("welcomeSignIn").onclick = login;
 
-$("searchBtn").onclick=()=>{
- searchUser($("searchInput").value);
-};
+onAuthStateChanged(auth, async user => {
+ currentUser = user;
+ show("welcome", !user);
+ show("setup", false);
+ show("app", false);
+ if(!user) return;
 
-$("searchInput").addEventListener("keydown",event=>{
- if(event.key==="Enter"){
-  searchUser($("searchInput").value);
+ try {
+  const snap = await get(ref(db, "profiles/" + user.uid));
+  if(snap.exists()){
+   myProfile = snap.val();
+   renderProfile();
+   show("app", true);
+  } else {
+   $("nicknameInput").value = user.displayName || "";
+   show("setup", true);
+  }
+ } catch(error) {
+  alert("Could not load your profile: " + error.message);
  }
 });
 
-$("signOutBtn").onclick=async()=>{
- try{
-  await signOut(auth);
- }catch(error){
-  alert("Sign-out failed: "+error.message);
+$("saveProfile").onclick = async () => {
+ const username = $("usernameInput").value.trim().toLowerCase();
+ const nickname = $("nicknameInput").value.trim();
+ const status = $("setupStatus");
+ if(!/^[a-z0-9_]{3,20}$/.test(username)){
+  status.textContent = "Use 3–20 lowercase letters, numbers or underscores.";
+  return;
+ }
+ if(nickname.length < 2 || nickname.length > 20){
+  status.textContent = "Display name must be 2–20 characters.";
+  return;
+ }
+ status.textContent = "Saving profile...";
+ const usernameRef = ref(db, "usernames/" + username);
+ const profileRef = ref(db, "profiles/" + currentUser.uid);
+ try {
+  const oldSnap = await get(profileRef);
+  const oldProfile = oldSnap.exists() ? oldSnap.val() : null;
+  const nameSnap = await get(usernameRef);
+  if(nameSnap.exists() && nameSnap.val() !== currentUser.uid){
+   status.textContent = "That username is already taken.";
+   return;
+  }
+  if(!nameSnap.exists()) await set(usernameRef, currentUser.uid);
+  try {
+   const profile = {
+    username, nickname,
+    createdAt: oldProfile?.createdAt || Date.now()
+   };
+   await set(profileRef, profile);
+   if(oldProfile?.username && oldProfile.username !== username){
+    await remove(ref(db, "usernames/" + oldProfile.username));
+   }
+   myProfile = profile;
+   renderProfile();
+   show("setup", false);
+   show("app", true);
+  } catch(error) {
+   if(!nameSnap.exists()) await remove(usernameRef);
+   throw error;
+  }
+ } catch(error) {
+  status.textContent = "Could not save: " + error.message;
  }
 };
 
+function renderProfile(){
+ $("myName").textContent = myProfile.nickname;
+ $("myUsername").textContent = "@" + myProfile.username;
+}
+
+$("shareProfile").onclick = async () => {
+ const url = location.origin + location.pathname + "?user=" + encodeURIComponent(myProfile.username);
+ try {
+  await navigator.clipboard.writeText(url);
+  $("profileStatus").textContent = "Profile link copied: " + url;
+ } catch {
+  $("profileStatus").textContent = url;
+ }
+};
+
+$("changeUsername").onclick = () => {
+ $("usernameInput").value = myProfile.username;
+ $("nicknameInput").value = myProfile.nickname;
+ show("app", false);
+ show("setup", true);
+};
+
+$("signOut").onclick = () => signOut(auth);
+
+document.querySelectorAll("[data-tab]").forEach(button => {
+ button.onclick = () => {
+  document.querySelectorAll("[data-tab]").forEach(b => b.classList.remove("active"));
+  button.classList.add("active");
+  document.querySelectorAll(".tab").forEach(tab => tab.classList.add("hidden"));
+  show(button.dataset.tab, true);
+ };
+});
+
+$("searchBtn").onclick = async () => {
+ const username = $("searchInput").value.trim().toLowerCase();
+ const results = $("searchResults");
+ results.textContent = "Searching...";
+ if(!/^[a-z0-9_]{3,20}$/.test(username)){
+  results.textContent = "Enter a valid username.";
+  return;
+ }
+ try {
+  const snap = await get(ref(db, "usernames/" + username));
+  if(!snap.exists()){
+   results.textContent = "No user found.";
+   return;
+  }
+  const uid = snap.val();
+  if(uid === currentUser.uid){
+   results.textContent = "That's your own username.";
+   return;
+  }
+  const profileSnap = await get(ref(db, "profiles/" + uid));
+  if(!profileSnap.exists()){
+   results.textContent = "Profile not found.";
+   return;
+  }
+  const p = profileSnap.val();
+  const item = document.createElement("div");
+  item.className = "item";
+  const label = document.createElement("span");
+  label.textContent = p.nickname + " (@" + p.username + ")";
+  const button = document.createElement("button");
+  button.textContent = "Request feature coming soon";
+  button.disabled = true;
+  item.append(label, button);
+  results.replaceChildren(item);
+ } catch(error) {
+  results.textContent = "Search failed: " + error.message;
+ }
+};
+
+const sharedUser = new URLSearchParams(location.search).get("user");
+if(sharedUser) $("searchInput").value = sharedUser;
+
+getRedirectResult(auth).catch(error => {
+ console.error("Sign-in error:", error);
+ alert("Google sign-in error: " + error.message);
+});
 </script>
 </body>
 </html>
