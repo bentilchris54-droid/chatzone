@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,19 +9,108 @@
 :root{--bg:#080b16;--panel:#11182a;--panel2:#171f34;--line:#293653;--text:#f4f2ff;--muted:#9ba9c2;--purple:#8957ff;--cyan:#39dff2;--pink:#ff4fa3}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#32205b 0,transparent 38%),radial-gradient(ellipse at 90% 15%,#103d51 0,transparent 32%),var(--bg);color:var(--text);font:15px Arial,sans-serif;min-height:100vh}
 button,input,textarea,select{font:inherit}button{border:0;border-radius:11px;padding:11px 14px;background:linear-gradient(110deg,var(--purple),#596eea);color:white;font-weight:700;cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}input,textarea,select{width:100%;padding:12px;background:#0b1221;color:white;border:1px solid var(--line);border-radius:10px;margin:6px 0;outline:none}textarea{min-height:75px;resize:vertical}label{font-size:12px;color:var(--muted)}header{height:64px;padding:0 15px;display:flex;align-items:center;gap:12px;background:#0b1120eF;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5;backdrop-filter:blur(14px)}.logo{font-weight:1000;font-size:22px;letter-spacing:1px;color:#d9caff}.logo span{color:var(--cyan)}.right{margin-left:auto}main{max-width:1000px;margin:auto;padding:16px 12px 100px}.panel{background:linear-gradient(145deg,#151d31ee,#0e1626f2);border:1px solid #34415f;border-radius:17px;padding:16px;margin-bottom:14px;box-shadow:0 10px 35px #0003}h2{font-size:19px;color:#d8c9ff;margin:0 0 12px}h3{font-size:15px;margin:0 0 8px}.muted{color:var(--muted);font-size:13px;line-height:1.5}.notice{color:#ffd58a;font-size:13px;line-height:1.5}.hidden{display:none!important}.tabs{display:flex;gap:7px;overflow:auto;margin:12px 0}.tabs button{white-space:nowrap;background:#1b2940;color:#b7c4d9}.tabs button.active{background:linear-gradient(100deg,var(--purple),#416edb);color:white}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}.tile{background:#0c1424;border:1px solid var(--line);border-radius:13px;padding:14px}.tile strong{display:block;margin-bottom:7px}.row{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}.row:last-child{border:0}.grow{flex:1;min-width:0}.avatar{width:46px;height:46px;display:grid;place-items:center;border-radius:50%;font-weight:900;background:linear-gradient(135deg,var(--purple),var(--cyan));flex-shrink:0}.actions{display:flex;gap:6px;flex-wrap:wrap}.small{font-size:12px;padding:8px 10px}.secondary{background:#293650}.danger{background:#9c3d61}.success{background:#137f70}.hero{text-align:center;padding:25px 12px 16px}.hero .mark{font-size:48px;filter:drop-shadow(0 0 18px #8e5bff)}.hero h1{font-size:clamp(29px,7vw,48px);margin:8px 0;background:linear-gradient(90deg,#e0c9ff,#63e9f4,#ff80bd);background-clip:text;color:transparent}.hero-art{min-height:180px;border-radius:15px;margin:16px 0;background:linear-gradient(120deg,#140e2a88,#071c2c99),url('https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1200') center/cover;display:grid;place-items:center;border:1px solid #7353ad}.hero-art span{font-size:40px;text-shadow:0 4px 20px #000}.auth{max-width:450px;margin:12px auto}.auth button{width:100%;margin:5px 0;padding:13px}.google{background:#26334a}.email{background:linear-gradient(100deg,var(--purple),#2c9ec8)}.link{background:none;color:#75e7f3;padding:8px}.nav{position:fixed;bottom:0;left:0;right:0;z-index:6;background:#0b1120f5;border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:8px 2px calc(8px + env(safe-area-inset-bottom));backdrop-filter:blur(12px)}.nav button{background:none;color:#aebbd0;font-size:11px;padding:7px 9px}.nav button.active{color:#d7c4ff}.nav span{display:block;font-size:19px;margin-bottom:3px}.bubble{padding:10px 13px;border-radius:14px;background:#263650;margin:8px 0;max-width:85%;overflow-wrap:anywhere;white-space:pre-wrap}.mine{margin-left:auto;background:#6441a4}.bubble small{display:block;font-size:10px;color:#d0c7e8;margin-top:5px}.messages{height:42vh;min-height:230px;overflow:auto;padding:10px;background:#080e19;border-radius:12px}.send{display:flex;gap:7px}.send input{flex:1;min-width:0}.pill{display:inline-block;padding:5px 8px;border-radius:20px;background:#263650;color:#bfeef3;font-size:11px;margin:3px}.status{color:#6ce6b8;font-size:12px}.empty{text-align:center;color:var(--muted);padding:20px;font-size:13px}.stat{font-size:25px;font-weight:900;color:#d9c6ff}.cover{height:100px;border-radius:12px;background:linear-gradient(120deg,#442a83,#0d667a);margin-bottom:12px}
+
+/* Neon pink sign-in screen */
+body:has(#welcome:not(.hidden)){background:#080308;color:#fff}
+body:has(#welcome:not(.hidden))>header{display:none}
+body:has(#welcome:not(.hidden)) main{max-width:none;padding:0;min-height:100vh}
+.auth-screen{min-height:100vh;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(360px,.95fr);background:radial-gradient(ellipse at 12% 20%,#5b123c 0,transparent 42%),radial-gradient(ellipse at 85% 75%,#35102c 0,transparent 42%),#080308}
+.auth-visual{min-height:100vh;position:relative;display:flex;flex-direction:column;justify-content:space-between;padding:34px clamp(24px,5vw,76px);overflow:hidden;background:linear-gradient(180deg,#13061155,#08030899),url('https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1400') center/cover}
+.auth-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#09030922,#09030977);pointer-events:none}
+.auth-brand,.auth-copy,.visual-footer{position:relative;z-index:1}
+.auth-brand,.auth-mobile-brand{font-size:22px;font-weight:900;letter-spacing:3px;color:#fff}
+.auth-brand span,.auth-mobile-brand span{color:#ff4fa3}
+.auth-copy{max-width:560px;margin:auto 0;text-shadow:0 3px 20px #000}
+.neon-heart{font-size:100px;line-height:1;color:#ff4fa3;text-shadow:0 0 12px #ff4fa3,0 0 32px #ff1688;transform:rotate(-12deg);width:max-content}
+.script-kicker{font-family:Georgia,serif;font-style:italic;color:#ff83bd;font-size:clamp(20px,3vw,30px)}
+.auth-copy h1{font-size:clamp(42px,6vw,76px);line-height:.98;letter-spacing:-2px;margin:12px 0}
+.auth-copy h1 em{font-style:normal;color:#ff5aa8;text-shadow:0 0 24px #ff168866}
+.auth-copy>p:last-child{max-width:390px;color:#f2dce8;line-height:1.7}
+.visual-footer{font-size:11px;letter-spacing:4px;color:#ffc0dc}
+.visual-footer i{color:#ff4fa3;font-style:normal;padding:0 7px}
+.auth-side{display:grid;place-items:center;padding:28px}
+.auth-card{width:min(100%,470px);padding:clamp(24px,4vw,42px);border:1px solid #ff4fa377;border-radius:28px;background:linear-gradient(145deg,#130a12f5,#080508f8);box-shadow:0 0 0 1px #ff4fa31c,0 0 45px #ff168833,inset 0 0 30px #ff16880a}
+.auth-heading{text-align:center;margin-bottom:24px}
+.auth-heart{font-size:34px;color:#ff4fa3;text-shadow:0 0 18px #ff1688}
+.auth-heading h2{font-size:30px;color:#ff5ba9;margin:5px 0 8px}
+.auth-heading p{color:#c5aebc;font-size:13px;line-height:1.5}
+.auth-card .google,.auth-card .email{width:100%;min-height:50px;border-radius:14px;margin:7px 0;font-weight:700}
+.auth-card .google{background:#17131a;border:1px solid #51404d;color:#fff}
+.google-g{font-size:21px;font-weight:900;margin-right:10px;background:conic-gradient(#4285f4 0 25%,#34a853 0 50%,#fbbc05 0 75%,#ea4335 0);background-clip:text;color:transparent}
+.auth-divider{display:flex;align-items:center;gap:12px;color:#9e8493;font-size:10px;letter-spacing:1.5px;margin:22px 0}
+.auth-divider:before,.auth-divider:after{content:"";height:1px;flex:1;background:#563044}
+.auth-fields label{display:block;margin:12px 0 5px;color:#d7b8ca;font-size:12px}
+.auth-card input:not([type=checkbox]){background:#0a070b;border:1px solid #71314f;border-radius:14px;padding:15px;color:#fff;margin:0}
+.auth-card input:focus{border-color:#ff4fa3;box-shadow:0 0 0 3px #ff4fa322}
+.password-wrap{position:relative}
+.password-wrap input{padding-right:52px!important}
+.eye-btn{position:absolute;right:6px;top:4px;background:transparent!important;color:#e5a3c3!important;padding:9px!important;width:40px!important;margin:0!important}
+.auth-options{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:12px 0 18px}
+.auth-options .remember{display:flex;align-items:center;gap:7px;color:#bda9b5;font-size:12px}
+.auth-options input[type=checkbox]{width:16px;height:16px;accent-color:#ff4fa3;margin:0}
+.auth-card .link{color:#ff65ad;background:transparent;padding:6px;font-size:12px}
+.auth-card .email{background:linear-gradient(100deg,#ff4fa3,#d91d78);color:#170711;font-size:16px;box-shadow:0 8px 24px #e91e7b44}
+.auth-card .email span{margin-left:7px}
+.signup-prompt{text-align:center;color:#c8b6c1;font-size:12px;margin:22px 0 8px}
+.auth-footnote{text-align:center;color:#806d79;font-size:10px;line-height:1.5}
+.auth-message{min-height:18px;margin:8px 0 0}
+.auth-mobile-brand{display:none;text-align:center;margin-bottom:22px}
+@media(max-width:760px){
+ .auth-screen{grid-template-columns:1fr;min-height:100vh}
+ .auth-visual{min-height:190px;padding:20px 24px;background-position:center 35%}
+ .auth-brand{display:none}
+ .auth-copy{margin:auto 0 0}
+ .neon-heart{font-size:42px}
+ .script-kicker{font-size:16px;margin:4px 0}
+ .auth-copy h1{font-size:29px;margin:4px 0}
+ .auth-copy>p:last-child{font-size:11px;margin:4px 0}
+ .visual-footer{display:none}
+ .auth-side{padding:18px 14px 28px;align-items:start}
+ .auth-card{padding:24px 20px;border-radius:22px}
+ .auth-mobile-brand{display:block}
+ .auth-heading h2{font-size:26px}
+}
+
 </style>
 </head>
 <body>
 <header><div class="logo">CHAT<span>ZONE</span></div><div class="right"><button id="headerGames" class="secondary small">🎮 Gaming Hub</button></div></header>
 <main>
-<section id="welcome" class="panel">
- <div class="hero"><div class="mark">🎮</div><h1>PLAY. CONNECT. COMPETE.</h1><p class="muted">Your gaming community starts here.</p></div>
- <div class="hero-art"><span>LEVEL UP YOUR SQUAD</span></div>
- <div class="auth">
-  <button id="google" class="google">🌐 Continue with Google</button>
-  <button id="showEmail" class="email">✉ Continue with Email</button>
-  <div id="emailBox" class="tile hidden"><h3 id="emailTitle">Create your account</h3><input id="email" type="email" placeholder="Email address"><input id="password" type="password" placeholder="Password (at least 6 characters)"><input id="confirm" type="password" placeholder="Confirm password"><button id="emailGo">Create account</button><button id="switchMode" class="link">Already have an account? Log in</button><button id="forgot" class="link">Forgot password?</button><p id="authMsg" class="notice"></p></div>
-  <p class="muted">Use a username instead of sharing your phone number.</p>
+<section id="welcome" class="auth-screen">
+ <div class="auth-visual">
+  <div class="auth-brand">CHAT<span>ZONE</span></div>
+  <div class="auth-copy">
+   <div class="neon-heart">♡</div>
+   <p class="script-kicker">Play together. Stay connected.</p>
+   <h1>WELCOME TO<br><em>YOUR SQUAD</em></h1>
+   <p>Find your people, build your team and make every game count.</p>
+  </div>
+  <div class="visual-footer">PLAY <i>•</i> CONNECT <i>•</i> COMPETE</div>
+ </div>
+ <div class="auth-side">
+  <div class="auth-card">
+   <div class="auth-mobile-brand">CHAT<span>ZONE</span></div>
+   <div class="auth-heading">
+    <div class="auth-heart">♡</div>
+    <h2 id="emailTitle">Welcome Back</h2>
+    <p>Sign in to continue your gaming journey.</p>
+   </div>
+   <button id="google" class="google"><span class="google-g">G</span> Continue with Google</button>
+   <div class="auth-divider"><span>OR CONTINUE WITH EMAIL</span></div>
+   <div id="emailBox" class="auth-fields">
+    <label for="email">Email address</label>
+    <input id="email" type="email" autocomplete="email" placeholder="Enter your email address">
+    <label for="password">Password</label>
+    <div class="password-wrap"><input id="password" type="password" autocomplete="current-password" placeholder="Enter your password"><button type="button" id="togglePassword" class="eye-btn" aria-label="Show password">◉</button></div>
+    <div class="auth-options"><label class="remember"><input type="checkbox" id="rememberMe" checked> Remember me</label><button id="forgot" class="link">Forgot password?</button></div>
+    <div id="confirmWrap" class="hidden"><label for="confirm">Confirm password</label><input id="confirm" type="password" autocomplete="new-password" placeholder="Confirm your password"></div>
+    <button id="emailGo" class="email">Sign In <span>♥</span></button>
+    <button id="showEmail" class="hidden" type="button">Continue with Email</button>
+    <p id="authMsg" class="notice auth-message" role="status"></p>
+   </div>
+   <p class="signup-prompt"><span id="modePrompt">Don't have an account?</span> <button id="switchMode" class="link">Sign Up ♡</button></p>
+   <p class="auth-footnote">Use your email to sign in. Your phone number is never required.</p>
+  </div>
  </div>
 </section>
 <section id="setup" class="panel hidden"><h2>Build your gamer profile</h2><input id="newNick" maxlength="20" placeholder="Display name"><input id="newUser" maxlength="20" placeholder="Unique username (3–20 letters/numbers/_)"><input id="newTag" maxlength="24" placeholder="Gamer tag (optional)"><select id="newPlatform"><option>Mobile</option><option>PC</option><option>PlayStation</option><option>Xbox</option><option>Nintendo</option><option>Multiple platforms</option></select><input id="newGames" placeholder="Favourite games, separated by commas"><textarea id="newBio" maxlength="160" placeholder="Short bio (optional)"></textarea><button id="createProfile">Save gamer profile</button><p id="setupMsg" class="notice"></p></section>
@@ -59,7 +147,7 @@ import{getAuth,GoogleAuthProvider,signInWithRedirect,onAuthStateChanged,signOut,
 import{getDatabase,ref,get,set,remove,push,onValue,onDisconnect,serverTimestamp,runTransaction}from"https://www.gstatic.com/firebasejs/13.4.0/firebase-database.js";
 const firebaseConfig={apiKey:"AIzaSyBLjm_Fm3rf6xArbVQm8NsHeMZAQAtYho8",authDomain:"gamersnet-b9c7d.firebaseapp.com",databaseURL:"https://gamersnet-b9c7d-default-rtdb.firebaseio.com",projectId:"gamersnet-b9c7d",storageBucket:"gamersnet-b9c7d.firebasestorage.app",messagingSenderId:"706719567863",appId:"1:706719567863:web:c45901a666cea84b5368f2",measurementId:"G-L3QQF7E0WZ"};
 const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getDatabase(app),provider=new GoogleAuthProvider(),$=id=>document.getElementById(id),r=(...p)=>ref(db,p.join("/"));
-let user=null,profile=null,friend=null,friendship=null,chatStop=null,requestStop=null,friendStop=null,feedStops=[],mode="register";
+let user=null,profile=null,friend=null,friendship=null,chatStop=null,requestStop=null,friendStop=null,feedStops=[],mode="login";
 const safe=(s)=>String(s??"").replace(/[<>&"]/g,c=>({"<":"&lt;",">":"&gt;","&":"&amp;",'"':"&quot;"}[c]));
 function show(id,on){$(id).classList.toggle("hidden",!on)}
 function page(id){["welcome","setup","app","chatPage","settings","newsPage"].forEach(x=>show(x,x===id));show("nav",["app","settings"].includes(id));}
@@ -68,16 +156,17 @@ function row(parent,title,sub,buttons=[]){let d=document.createElement("div");d.
 function msg(id,s){$(id).textContent=s}
 $("google").onclick=()=>signInWithRedirect(auth,provider).catch(e=>msg("authMsg",e.message));
 $("showEmail").onclick=()=>show("emailBox",true);
-$("switchMode").onclick=()=>{mode=mode==="register"?"login":"register";$("emailTitle").textContent=mode==="register"?"Create your account":"Welcome back";$("emailGo").textContent=mode==="register"?"Create account":"Log in";show("confirm",mode==="register");$("switchMode").textContent=mode==="register"?"Already have an account? Log in":"New here? Create an account"};
+$("switchMode").onclick=()=>{mode=mode==="register"?"login":"register";$("emailTitle").textContent=mode==="register"?"Create your account":"Welcome Back";$("emailGo").innerHTML=mode==="register"?"Create Account <span>♥</span>":"Sign In <span>♥</span>";$("modePrompt").textContent=mode==="register"?"Already have an account?":"Don't have an account?";$("switchMode").textContent=mode==="register"?"Sign In ♡":"Sign Up ♡";$("password").autocomplete=mode==="register"?"new-password":"current-password";show("confirmWrap",mode==="register");$("confirm").required=mode==="register"}; 
+$("togglePassword").onclick=()=>{let field=$("password"),visible=field.type==="password";field.type=visible?"text":"password";$("togglePassword").textContent=visible?"◎":"◉";$("togglePassword").setAttribute("aria-label",visible?"Hide password":"Show password")};
 $("emailGo").onclick=async()=>{let e=$("email").value.trim(),p=$("password").value;if(!e||p.length<6)return msg("authMsg","Enter a valid email and a password with at least 6 characters.");if(mode==="register"&&p!==$("confirm").value)return msg("authMsg","Passwords do not match.");try{if(mode==="register")await createUserWithEmailAndPassword(auth,e,p);else await signInWithEmailAndPassword(auth,e,p)}catch(x){msg("authMsg",x.message)}};
 $("forgot").onclick=async()=>{try{await sendPasswordResetEmail(auth,$("email").value.trim());msg("authMsg","Password reset email sent.")}catch(e){msg("authMsg",e.message)}};
 onAuthStateChanged(auth,async u=>{cleanup();user=u;if(!u){page("welcome");return}try{let s=await get(r("profiles",u.uid));if(s.exists()){profile=s.val();start()}else{page("setup");$("newNick").value=u.displayName||""}}catch(e){alert("Could not load profile: "+e.message)}});
 $("createProfile").onclick=async()=>{let nickname=$("newNick").value.trim(),username=$("newUser").value.trim().toLowerCase();if(nickname.length<2||nickname.length>20||!/^[a-z0-9_]{3,20}$/.test(username))return msg("setupMsg","Use a 2–20 character display name and a unique username of 3–20 letters, numbers or _.");try{let old=await get(r("usernames",username));if(old.exists()&&old.val()!==user.uid)return msg("setupMsg","That username is taken.");await set(r("usernames",username),user.uid);profile={nickname,username,gamerTag:$("newTag").value.trim(),platform:$("newPlatform").value,games:$("newGames").value.trim(),bio:$("newBio").value.trim(),createdAt:Date.now(),points:0,theme:"purple",privacy:"everyone",presenceVisible:true};await set(r("profiles",user.uid),profile);start()}catch(e){msg("setupMsg","Could not save: "+e.message)}};
 function cleanup(){[chatStop,requestStop,friendStop,...feedStops].forEach(f=>{if(typeof f==="function")f()});chatStop=requestStop=friendStop=null;feedStops=[]}
-async function start(){page("app");$("myNick").textContent=profile.nickname;$("myHandle").textContent="@"+profile.username;$("myAvatar").textContent=(profile.nickname||"G")[0].toUpperCase();$("myTags").innerHTML=`<span class="pill">${safe(profile.platform||"Mobile")}</span><span class="pill">${safe(profile.gamerTag||"Gamer")}</span>`;$("gamerCard").textContent=`${profile.gamerTag||profile.nickname} · ${profile.platform||"Mobile"} · ${profile.games||"Add favourite games in Settings"}`;$("myPoints").textContent=(profile.points||0)+" pts";await presence();listenFriends();listenRequests();loadLists();loadCommunity();loadLeaderboard();let share=new URLSearchParams(location.search).get("user");if(share){tab("find");$("searchName").value=share}}
+async function start(){page("app");let savedColors={purple:["#8957ff","#39dff2"],cyan:["#20b8d0","#62eaff"],pink:["#ff4fa3","#8a58ff"],green:["#35bd78","#b5f36b"]};let activeColors=savedColors[profile.theme||"purple"]||savedColors.purple;document.documentElement.style.setProperty("--purple",activeColors[0]);document.documentElement.style.setProperty("--cyan",activeColors[1]);$("myNick").textContent=profile.nickname;$("myHandle").textContent="@"+profile.username;$("myAvatar").textContent=(profile.nickname||"G")[0].toUpperCase();$("myTags").innerHTML=`<span class="pill">${safe(profile.platform||"Mobile")}</span><span class="pill">${safe(profile.gamerTag||"Gamer")}</span>`;$("gamerCard").textContent=`${profile.gamerTag||profile.nickname} · ${profile.platform||"Mobile"} · ${profile.games||"Add favourite games in Settings"}`;$("myPoints").textContent=(profile.points||0)+" pts";await presence();listenFriends();listenRequests();loadLists();loadCommunity();loadLeaderboard();let share=new URLSearchParams(location.search).get("user");if(share){tab("find");$("searchName").value=share}}
 async function presence(){let p=r("presence",user.uid);await onDisconnect(p).set({state:"offline",lastChanged:serverTimestamp()});await set(p,{state:profile.presenceVisible===false?"hidden":"online",lastChanged:serverTimestamp()})}
 document.querySelectorAll("[data-tab]").forEach(b=>b.onclick=()=>tab(b.dataset.tab));
-document.querySelectorAll("[data-page]").forEach(b=>b.onclick=()=>{tab(b.dataset.page);document.querySelectorAll("[data-page]").forEach(x=>x.classList.toggle("active",x===b))});
+document.querySelectorAll("[data-page]").forEach(b=>b.onclick=()=>{if(b.dataset.page==="settings")openSettings();else tab(b.dataset.page);document.querySelectorAll("[data-page]").forEach(x=>x.classList.toggle("active",x===b))});
 $("headerGames").onclick=()=>tab("games");$("openSettings").onclick=openSettings;
 function openSettings(){["Nick","User","Tag","Bio","Games","Platform"].forEach((x,i)=>{});$("editNick").value=profile.nickname||"";$("editUser").value=profile.username||"";$("editTag").value=profile.gamerTag||"";$("editBio").value=profile.bio||"";$("editGames").value=profile.games||"";$("editPlatform").value=profile.platform||"Mobile";$("theme").value=profile.theme||"purple";$("privacy").value=profile.privacy||"everyone";$("presenceSetting").value=profile.presenceVisible===false?"hidden":"online";page("settings")}
 $("saveSettings").onclick=async()=>{let nick=$("editNick").value.trim(),name=$("editUser").value.trim().toLowerCase();if(nick.length<2||nick.length>20||!/^[a-z0-9_]{3,20}$/.test(name))return msg("settingsMsg","Check your display name and username.");try{let check=await get(r("usernames",name));if(check.exists()&&check.val()!==user.uid)return msg("settingsMsg","Username is already taken.");let old=profile.username;if(!check.exists())await set(r("usernames",name),user.uid);profile={...profile,nickname:nick,username:name,gamerTag:$("editTag").value.trim(),bio:$("editBio").value.trim(),games:$("editGames").value.trim(),platform:$("editPlatform").value};await set(r("profiles",user.uid),profile);if(old!==name)await remove(r("usernames",old));msg("settingsMsg","Profile updated.");$("myNick").textContent=nick;$("myHandle").textContent="@"+name;$("gamerCard").textContent=`${profile.gamerTag||nick} · ${profile.platform} · ${profile.games}`}catch(e){msg("settingsMsg",e.message)}};
@@ -86,8 +175,27 @@ $("savePrivacy").onclick=async()=>{profile.privacy=$("privacy").value;profile.pr
 $("copyLink").onclick=async()=>{let link=location.origin+location.pathname+"?user="+encodeURIComponent(profile.username);try{await navigator.clipboard.writeText(link);msg("settingsMsg","Profile link copied.")}catch{msg("settingsMsg",link)}};
 $("logout").onclick=async()=>{await set(r("presence",user.uid),{state:"offline",lastChanged:serverTimestamp()});await signOut(auth)};
 $("search").onclick=async()=>{let name=$("searchName").value.trim().toLowerCase(),out=$("searchOut");out.textContent="Searching…";try{let s=await get(r("usernames",name));if(!s.exists())return out.textContent="No user found.";let uid=s.val();if(uid===user.uid)return out.textContent="That is your profile.";let ps=await get(r("profiles",uid));if(!ps.exists())return out.textContent="Profile unavailable.";let p=ps.val(),f=await get(r("friendships",user.uid,uid));let received=await get(r("requests",user.uid,uid));let acts=[];if(f.exists())acts.push(["Message",()=>openChat(uid,f.val(),p)]);else if(received.exists())acts.push(["Request received",()=>tab("requests")]);else acts.push(["Add friend",()=>sendRequest(uid)]);row(out,p.nickname,`@${p.username} · ${p.platform||"Gamer"} · ${p.games||""}`,acts)}catch(e){out.textContent="Search error: "+e.message}};
-async function sendRequest(to){try{await set(r("requests",to,user.uid),{createdAt:Date.now()});msg("searchOut","Friend request sent.")}catch(e){alert("Request failed: "+e.message)}}
+async function sendRequest(to){try{let target=await get(r("profiles",to));if(!target.exists())return msg("searchOut","That profile is unavailable.");if(target.val().privacy==="nobody")return msg("searchOut","This user is not accepting friend requests.");await set(r("requests",to,user.uid),{createdAt:Date.now()});msg("searchOut","Friend request sent.")}catch(e){alert("Request failed: "+e.message)}}
 function listenRequests(){requestStop=onValue(r("requests",user.uid),async s=>{let out=$("requestList");out.replaceChildren();if(!s.exists()){out.textContent="No new requests.";return}for(let sender of Object.keys(s.val())){let p=(await get(r("profiles",sender))).val();if(p)row(out,p.nickname,"@"+p.username,[["Accept",()=>accept(sender),"success"],["Reject",()=>remove(r("requests",user.uid,sender)),"danger"]])}})}
 async function accept(sender){try{let q=await get(r("requests",user.uid,sender));if(!q.exists())return;let f={recipientUid:user.uid,senderUid:sender,createdAt:Date.now()};await set(r("friendships",sender,user.uid),f);await set(r("friendships",user.uid,sender),f);await remove(r("requests",user.uid,sender));alert("Friend added!")}catch(e){alert("Could not accept: "+e.message)}}
 function listenFriends(){friendStop=onValue(r("friendships",user.uid),async s=>{let out=$("friendList");out.replaceChildren();if(!s.exists()){out.textContent="No friends yet.";return}for(let [uid,f] of Object.entries(s.val())){let p=(await get(r("profiles",uid))).val();if(p)row(out,p.nickname,"@"+p.username,[["Message",()=>openChat(uid,f,p)]])}loadLists()})}
 async function loadLists(){let out=$("chatList");out.replaceChildren();try{let s=await get(r("friendships",user.uid));if(!s.exists()){out.textContent="No chats yet. Find gamers and add friends.";return}for(let [uid,f] of Object.entries(s.val())){let p=(await get(r("profiles",uid))).val();if(p)row(out,p.nickname,"@"+p.username,[["Open chat",()=>openChat(uid,f,p)]])}}catch(e){out.textContent=e.message}}
+function openChat(uid,f,p){friend=uid;friendship=f;page("chatPage");$("chatTitle").textContent=p.nickname;$("chatMessages").textContent="Loading…";if(chatStop)chatStop();let cr=r("chats",f.recipientUid,f.senderUid,"messages");chatStop=onValue(cr,s=>{let out=$("chatMessages");out.replaceChildren();if(!s.exists()){out.textContent="No messages yet. Say hello!";return}Object.values(s.val()).sort((a,b)=>a.createdAt-b.createdAt).forEach(m=>{let d=document.createElement("div");d.className="bubble"+(m.senderUid===user.uid?" mine":"");let t=document.createElement("div");t.textContent=m.text;let sm=document.createElement("small");sm.textContent=new Date(m.createdAt||Date.now()).toLocaleString();d.append(t,sm);out.append(d)});out.scrollTop=out.scrollHeight},e=>{$("chatMessages").textContent=e.message})}
+async function send(){let text=$("chatInput").value.trim();if(!text||!friendship)return;try{await push(r("chats",friendship.recipientUid,friendship.senderUid,"messages"),{senderUid:user.uid,text,createdAt:Date.now()});$("chatInput").value=""}catch(e){alert("Message failed: "+e.message)}}
+$("sendMessage").onclick=send;$("chatInput").addEventListener("keydown",e=>{if(e.key==="Enter")send()});
+function listenPath(path,element,render){let stop=onValue(r(...path),s=>render(element,s));feedStops.push(stop)}
+function loadCommunity(){listenPath(["community","posts"],"postList",(id,s)=>{let out=$(id);out.replaceChildren();if(!s.exists()){out.textContent="No posts yet.";return}Object.values(s.val()).sort((a,b)=>b.createdAt-a.createdAt).slice(0,40).forEach(p=>{let d=document.createElement("div");d.className="tile";let h=document.createElement("strong");h.textContent=p.nickname+" · @"+p.username;let t=document.createElement("p");t.textContent=p.text;let sm=document.createElement("small");sm.className="muted";sm.textContent=new Date(p.createdAt).toLocaleString();d.append(h,t,sm);out.append(d)})});listenPath(["community","polls"],"pollList",(id,s)=>{let out=$(id);out.replaceChildren();if(!s.exists()){out.textContent="No polls yet.";return}Object.entries(s.val()).forEach(([key,p])=>{let d=document.createElement("div");d.className="tile";let h=document.createElement("strong");h.textContent=p.question;d.append(h);p.options.forEach((opt,i)=>{let b=document.createElement("button");b.className="secondary small";b.style.margin="4px";b.textContent=opt+" ("+(p.votes?.[i]||0)+")";b.onclick=()=>vote(key,i);d.append(b)});out.append(d)})});listenPath(["gaming","lfg"],"lfgList",(id,s)=>renderSimple(id,s,"game","Looking for players"));listenPath(["gaming","challenges"],"challengeList",(id,s)=>renderSimple(id,s,"title","No challenges yet"));listenPath(["gaming","rooms"],"roomList",(id,s)=>renderSimple(id,s,"name","No rooms yet"))}
+function renderSimple(id,s,key,empty){let out=$(id);out.replaceChildren();if(!s.exists()){out.textContent=empty;return}Object.values(s.val()).slice(-25).reverse().forEach(x=>{let d=document.createElement("div");d.className="row";let t=document.createElement("div");t.className="grow";t.textContent=(x[key]||"Community item")+" · "+(x.nickname||"Gamer")+" · "+(x.detail||x.game||"");d.append(t);out.append(d)})}
+$("publishPost").onclick=async()=>{let text=$("postText").value.trim();if(!text)return;try{await push(r("community","posts"),{uid:user.uid,nickname:profile.nickname,username:profile.username,text,createdAt:Date.now()});$("postText").value=""}catch(e){alert(e.message)}};
+$("createPoll").onclick=async()=>{let q=$("pollQuestion").value.trim(),a=$("pollA").value.trim(),b=$("pollB").value.trim();if(!q||!a||!b)return alert("Enter a question and two options.");try{await push(r("community","polls"),{uid:user.uid,question:q,options:[a,b],votes:[0,0],voters:{},createdAt:Date.now()});$("pollQuestion").value=$("pollA").value=$("pollB").value=""}catch(e){alert(e.message)}};
+async function vote(key,i){try{await runTransaction(r("community","polls",key),p=>{if(!p)return p;p.voters=p.voters||{};if(p.voters[user.uid]!==undefined)return p;p.voters[user.uid]=i;p.votes=p.votes||[0,0];p.votes[i]=(p.votes[i]||0)+1;return p})}catch(e){alert(e.message)}}
+$("postLfg").onclick=async()=>{let game=$("lfgGame").value.trim(),detail=$("lfgMode").value.trim();if(!game)return alert("Enter a game.");try{await push(r("gaming","lfg"),{uid:user.uid,nickname:profile.nickname,game,detail,createdAt:Date.now()});$("lfgGame").value=$("lfgMode").value=""}catch(e){alert(e.message)}};
+$("postChallenge").onclick=async()=>{let title=$("challengeTitle").value.trim(),game=$("challengeGame").value.trim();if(!title||!game)return alert("Enter a title and game.");try{await push(r("gaming","challenges"),{uid:user.uid,nickname:profile.nickname,title,game,createdAt:Date.now()});$("challengeTitle").value=$("challengeGame").value=""}catch(e){alert(e.message)}};
+$("createRoom").onclick=async()=>{let name=$("roomName").value.trim(),game=$("roomGame").value.trim();if(!name||!game)return alert("Enter a room name and game.");try{await push(r("gaming","rooms"),{uid:user.uid,nickname:profile.nickname,name,game,createdAt:Date.now()});$("roomName").value=$("roomGame").value=""}catch(e){alert(e.message)}};
+$("dailyReward").onclick=async()=>{let day=new Date().toISOString().slice(0,10);try{let tx=await runTransaction(r("dailyClaims",user.uid,day),v=>v?undefined:{claimed:true,at:Date.now()});if(!tx.committed)return alert("Already claimed today.");let ptx=await runTransaction(r("profiles",user.uid),p=>{if(!p)return p;p.points=(p.points||0)+10;return p});profile=ptx.snapshot.val();$("myPoints").textContent=(profile.points||0)+" pts";loadLeaderboard()}catch(e){alert("Could not claim reward: "+e.message)}};
+function loadLeaderboard(){listenPath(["profiles"],"leaderboard",(id,s)=>{let out=$(id);out.replaceChildren();if(!s.exists())return;Object.entries(s.val()).sort((a,b)=>(b[1].points||0)-(a[1].points||0)).slice(0,10).forEach(([uid,p],i)=>{let d=document.createElement("div");d.className="row";d.textContent=`${i+1}. ${p.nickname||"Gamer"} — ${p.points||0} pts`;out.append(d)})})}
+$("openNews").onclick=()=>{page("newsPage");loadNews()};$("refreshNews").onclick=loadNews;
+async function loadNews(){let out=$("newsItems");out.textContent="Loading headlines…";try{let url="https://news.google.com/rss/search?q=video+games+gaming+updates&hl=en-US&gl=US&ceid=US:en";let res=await fetch("https://api.allorigins.win/raw?url="+encodeURIComponent(url));if(!res.ok)throw Error("Feed unavailable");let xml=new DOMParser().parseFromString(await res.text(),"text/xml");let items=[...xml.querySelectorAll("item")].slice(0,12);out.replaceChildren();items.forEach(item=>{let a=document.createElement("a");a.textContent=item.querySelector("title")?.textContent||"Gaming news";a.href=item.querySelector("link")?.textContent||"#";a.target="_blank";a.rel="noopener noreferrer";a.style="display:block;color:#d7c4ff;margin:12px 0";out.append(a)});if(!items.length)throw Error("No headlines")}catch(e){out.textContent="Gaming news is temporarily unavailable. Try again later."}}
+</script>
+</body>
+</html>
