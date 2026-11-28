@@ -3,112 +3,223 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ChatZone</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090d18">
+<title>ChatZone | Gaming Community</title>
+
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#080812;color:#f4f0ff;font-family:Arial,sans-serif}
-header{background:#111020;padding:17px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #302448}
-.logo{font-size:23px;font-weight:bold;color:#b58aff}
-.logo span{color:#42e8ff}
-main{max-width:850px;margin:22px auto;padding:12px}
-.panel{background:#111120;border:1px solid #302448;border-radius:15px;padding:18px;margin-bottom:16px}
-h2{color:#c4a5ff;margin-top:0}
-input{width:100%;padding:13px;margin:8px 0;background:#171629;color:white;border:1px solid #40345d;border-radius:9px}
-button{background:#8657ed;color:white;border:0;border-radius:9px;padding:11px 14px;font-weight:bold;cursor:pointer;margin:3px}
-button:disabled{opacity:.5;cursor:not-allowed}
-.secondary{background:#302544}
-.danger{background:#843d61}
+body{margin:0;background:#090d18;color:#f5f2ff;font-family:Arial,sans-serif}
+button,input{font:inherit}
+button{background:#8055ed;color:white;border:0;border-radius:10px;padding:11px 14px;font-weight:bold;cursor:pointer}
+button:disabled{opacity:.45;cursor:not-allowed}
+input{width:100%;padding:13px;background:#171d2c;color:white;border:1px solid #35415a;border-radius:10px;margin:8px 0}
+header{height:65px;padding:0 14px;background:#111a29;border-bottom:1px solid #29364d;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:5}
+.logo{font-size:23px;font-weight:900;color:#b69aff;letter-spacing:1px}
+.logo span{color:#43e3f4}
+.back,.secondary{background:#29364d}
+.danger{background:#963f62}
+main{max-width:850px;margin:auto;padding:14px 12px 90px}
+.panel{background:#111a29;border:1px solid #29364d;border-radius:15px;padding:16px;margin-bottom:14px}
+h2{font-size:19px;margin:0 0 12px;color:#d2c0ff}
+.muted{font-size:13px;color:#9eabc1}
+.notice{font-size:13px;color:#f5c879;line-height:1.5}
 .hidden{display:none!important}
-.tabs{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:15px}
-.tabs button{background:#29213e}
-.tabs button.active{background:#8657ed}
-.item{padding:12px 3px;border-bottom:1px solid #302448;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.tabs{display:flex;gap:7px;overflow-x:auto;padding:4px 0 12px}
+.tabs button{white-space:nowrap;background:#1b2639;color:#aebbd0}
+.tabs button.active{background:#8055ed;color:white}
+.item{display:flex;align-items:center;gap:11px;padding:12px 2px;border-bottom:1px solid #29364d}
 .item:last-child{border:0}
-.muted{color:#aaa4bf;font-size:14px}
-.notice{color:#ffce76;font-size:13px;line-height:1.5}
-#messages{height:310px;overflow-y:auto;background:#090914;border-radius:10px;padding:12px}
-.bubble{background:#29213e;padding:10px 13px;margin:8px 0;border-radius:12px;max-width:85%;overflow-wrap:anywhere}
-.mine{background:#53349a;margin-left:auto}
-.bubble small{display:block;color:#c5b6e8;margin-top:5px;font-size:10px}
-.status{color:#61e8bd;font-size:12px}
-a{color:#53dcff}
+.avatar{width:45px;height:45px;border-radius:50%;background:linear-gradient(135deg,#8055ed,#20bfd4);display:grid;place-items:center;font-weight:bold;font-size:17px;flex-shrink:0}
+.item-info{flex:1;min-width:0}
+.item-info strong{display:block;margin-bottom:5px}
+.item-info small{color:#9eabc1}
+.item-actions{display:flex;gap:5px;flex-wrap:wrap}
+.item-actions button{padding:8px 10px;font-size:12px}
+.online{color:#5de5b3;font-size:12px}
+#messages{height:48vh;min-height:250px;max-height:480px;overflow-y:auto;padding:12px;background:#090f1b;border-radius:12px}
+.bubble{width:fit-content;max-width:85%;padding:10px 13px;margin:8px 0;border-radius:14px;background:#26334a;overflow-wrap:anywhere;white-space:pre-wrap}
+.bubble.mine{margin-left:auto;background:#6540a9}
+.bubble small{display:block;font-size:10px;color:#d0c7e8;margin-top:6px}
+.send-row{display:flex;gap:7px}
+.send-row input{flex:1;min-width:0}
+.empty{text-align:center;padding:25px 8px;color:#9eabc1;font-size:13px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:5;background:#111a29;border-top:1px solid #29364d;display:flex;justify-content:space-around;padding:10px 3px calc(10px + env(safe-area-inset-bottom))}
+.bottom-nav button{background:transparent;color:#9eabc1;padding:8px;font-size:11px}
+.bottom-nav button.active{color:#c6aaff}
+.bottom-nav span{display:block;font-size:19px;margin-bottom:3px}
+
+/* Welcome page */
+.welcome{overflow:hidden;text-align:center;padding:0 0 22px;background:radial-gradient(ellipse at top,#482078 0%,#19112f 40%,#090d18 80%);border:1px solid #7442b9;border-radius:20px}
+.hero-content{padding:25px 16px 10px}
+.hero-logo{font-size:43px}
+.welcome h1{font-size:34px;margin:12px 0;background:linear-gradient(90deg,#fff,#b88aff,#42e3f4);-webkit-background-clip:text;color:transparent}
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:18px 0}
+.gallery img{width:100%;height:185px;object-fit:cover;border-radius:13px;border:1px solid #8055ed}
+.google-big{width:90%;padding:16px;border-radius:30px;font-size:16px;background:linear-gradient(90deg,#7138dc,#a044ed,#5145d9);box-shadow:0 0 24px #8b5cf688}
+.features{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:15px}
+.feature{padding:14px 8px;background:#17152b;border:1px solid #49336d;border-radius:12px;font-size:13px}
+.feature strong{display:block;color:#c5a2ff;margin-bottom:5px}
+
+/* Animated in-page website preview */
+.preview{margin:15px;padding:12px;border:2px solid #8055ed;border-radius:16px;background:#090d18;box-shadow:0 0 22px #702de955}
+.preview-top{display:flex;justify-content:space-between;color:#c5a2ff;font-size:12px;margin-bottom:10px}
+.preview-chat{display:flex;gap:9px;align-items:center;text-align:left;padding:9px;border-bottom:1px solid #29364d;font-size:12px}
+.preview-dot{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#8055ed,#20bfd4)}
+.preview-message{margin:9px 0 9px auto;background:#563b8d;padding:9px;border-radius:10px;width:65%;font-size:11px;text-align:left;animation:glow 2s infinite alternate}
+@keyframes glow{from{box-shadow:0 0 3px #8055ed}to{box-shadow:0 0 15px #8055ed}}
+.news-card{padding:13px 2px;border-bottom:1px solid #29364d}
+.news-card a{color:#d1bdff;text-decoration:none;font-weight:bold;line-height:1.4}
+.news-card p{font-size:12px;color:#9eabc1;line-height:1.5}
+.news-date{font-size:11px;color:#65ddeb;margin-top:6px}
 </style>
 </head>
+
 <body>
 <header>
+ <button id="backButton" class="back hidden">← Back</button>
  <div class="logo">CHAT<span>ZONE</span></div>
- <button id="topLogin">Google Sign In</button>
+ <button id="newsButton" class="secondary" style="margin-left:auto">🎮 Games</button>
 </header>
 
 <main>
-<section id="welcome" class="panel">
- <h2>Welcome to ChatZone</h2>
- <p class="muted">Connect with people using usernames, not phone numbers.</p>
- <button id="login">Sign in with Google</button>
+<!-- WELCOME / GOOGLE SIGN-IN -->
+<section id="welcome" class="welcome">
+ <div class="hero-content">
+  <div class="hero-logo">🎮</div>
+  <h1>WELCOME TO CHATZONE</h1>
+  <p style="color:#c6b5e8;line-height:1.6">CHAT • PLAY • CONNECT<br>Your friends. Your games. Your world.</p>
+
+  <div class="gallery">
+   <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600" alt="Gamer community portrait">
+   <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600" alt="Gamer community portrait">
+  </div>
+
+  <h2>Discover Your Gaming Community</h2>
+ </div>
+
+ <div class="preview">
+  <div class="preview-top"><strong>CHATZONE PREVIEW</strong><span>● ONLINE</span></div>
+  <div class="preview-chat"><div class="preview-dot"></div><div><strong>ShadowX</strong><br><span style="color:#9eabc1">Let's play later 🎮</span></div></div>
+  <div class="preview-chat"><div class="preview-dot"></div><div><strong>NovaQueen</strong><br><span style="color:#9eabc1">Hey! What's up?</span></div></div>
+  <div class="preview-message">That game was amazing 🔥</div>
+  <div class="preview-chat"><div class="preview-dot"></div><div><strong>PixelWarrior</strong><br><span style="color:#9eabc1">See you tomorrow!</span></div></div>
+  <p class="muted">Animated preview of the ChatZone experience</p>
+ </div>
+
+ <button id="loginButton" class="google-big">🌐 Continue with Google →</button>
+ <p class="muted">New users create a profile after their first sign-in.</p>
+
+ <div class="features">
+  <div class="feature"><strong>💬 Private Chats</strong>Talk with friends</div>
+  <div class="feature"><strong>👥 Add Friends</strong>Build your crew</div>
+  <div class="feature"><strong>🎮 Gaming News</strong>Discover updates</div>
+  <div class="feature"><strong>🛡️ Privacy</strong>Your privacy matters</div>
+ </div>
+ <p style="color:#c5a2ff">💜 Made for Gamers. By Gamers.</p>
 </section>
 
+<!-- PROFILE SETUP -->
 <section id="setup" class="panel hidden">
  <h2>Create your profile</h2>
- <input id="nickname" placeholder="Your display name">
- <input id="username" placeholder="Username (3–20 letters, numbers or _)">
- <button id="createProfile">Save profile</button>
+ <p class="muted">Choose a username your friends can search for.</p>
+ <input id="nickname" placeholder="Display name">
+ <input id="username" placeholder="Username: 3–20 letters, numbers or _">
+ <button id="saveProfile">Save profile</button>
  <p id="setupStatus" class="notice"></p>
 </section>
 
-<section id="app" class="hidden">
- <div class="panel">
-  <h2>Your profile</h2>
-  <div id="profileName"></div>
-  <div id="profileUsername" class="muted"></div>
-  <p id="myPresence" class="status"></p>
-  <button id="share">Copy profile link</button>
-  <button id="editProfile" class="secondary">Edit profile</button>
-  <button id="logout" class="secondary">Sign out</button>
-  <p id="profileStatus" class="notice"></p>
- </div>
+<!-- MAIN APP -->
+<section id="home" class="hidden">
+ <section class="panel">
+  <div style="display:flex;align-items:center;gap:12px">
+   <div class="avatar" id="myAvatar">C</div>
+   <div style="flex:1">
+    <strong id="myName">ChatZone user</strong>
+    <div class="muted" id="myUsername">@username</div>
+    <div class="online" id="myStatus">● Connecting...</div>
+   </div>
+   <button class="secondary" id="settingsButton">⚙</button>
+  </div>
+ </section>
 
  <div class="tabs">
-  <button class="active" data-tab="find">Find people</button>
-  <button data-tab="requests">Requests</button>
+  <button class="active" data-tab="chats">Chats</button>
   <button data-tab="friends">Friends</button>
-  <button data-tab="chat">Messages</button>
+  <button data-tab="requests">Requests</button>
+  <button data-tab="find">Find people</button>
  </div>
 
- <section id="find" class="panel tab">
-  <h2>Find people</h2>
-  <input id="searchName" placeholder="Enter a username">
+ <section id="chatsTab" class="panel"><h2>Recent conversations</h2><div id="chatList"></div></section>
+ <section id="friendsTab" class="panel hidden"><h2>Your friends</h2><div id="friendList"></div></section>
+ <section id="requestsTab" class="panel hidden"><h2>Friend requests</h2><div id="requestList"></div></section>
+ <section id="findTab" class="panel hidden">
+  <h2>Find gamers</h2>
+  <input id="searchInput" placeholder="Search by username">
   <button id="searchButton">Search</button>
   <div id="searchResults"></div>
  </section>
+</section>
 
- <section id="requests" class="panel tab hidden">
-  <h2>Friend requests</h2>
-  <div id="requestList"></div>
+<!-- PRIVATE CHAT -->
+<section id="chatPage" class="hidden">
+ <section class="panel" style="display:flex;align-items:center;gap:10px">
+  <div class="avatar" id="chatAvatar">?</div>
+  <div><h2 id="chatName">Conversation</h2><div id="chatStatus" class="muted">Checking status...</div></div>
  </section>
-
- <section id="friends" class="panel tab hidden">
-  <h2>Your friends</h2>
-  <div id="friendList"></div>
- </section>
-
- <section id="chat" class="panel tab hidden">
-  <h2 id="chatTitle">Your messages</h2>
-  <p id="chatPresence" class="status"></p>
-  <div id="messages">
-   <p class="muted">Choose a friend to start chatting.</p>
+ <section class="panel">
+  <div id="messages"><div class="empty">Loading conversation...</div></div>
+  <div class="send-row">
+   <input id="messageInput" placeholder="Type a message..." maxlength="2000">
+   <button id="sendButton">➤</button>
   </div>
-  <input id="messageInput" placeholder="Write a message..." disabled>
-  <button id="sendMessage" disabled>Send message</button>
-  <p class="muted">Messages are available only between accepted friends.</p>
-  <hr style="border-color:#302448;margin:22px 0">
+  <p class="muted">Messaging is intended for accepted friends.</p>
+ </section>
+ <section class="panel">
   <h2>Paid message</h2>
   <p class="muted">A future option to contact someone before they accept your request.</p>
   <button disabled>Paid Message — Coming Soon</button>
-  <p class="notice">Payments are not enabled. No money will be collected.</p>
+  <p class="notice">Payments are disabled. No money is collected.</p>
+ </section>
+</section>
+
+<!-- GAMING NEWS -->
+<section id="newsPage" class="hidden">
+ <section class="panel">
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+   <h2>🎮 Gaming updates</h2>
+   <button id="refreshNews" class="secondary">↻ Refresh</button>
+  </div>
+  <p class="muted">Recent game releases, announcements and updates.</p>
+  <p id="newsStatus" class="muted">Loading gaming headlines...</p>
+  <div id="newsList"></div>
+  <p class="notice">Headlines come from external publishers. New stories appear when publishers release them.</p>
+ </section>
+</section>
+
+<!-- SETTINGS -->
+<section id="settingsPage" class="hidden">
+ <section class="panel">
+  <h2>Profile settings</h2>
+  <label class="muted">Display name</label>
+  <input id="editNickname">
+  <label class="muted">Username</label>
+  <input id="editUsername">
+  <button id="saveChanges">Save changes</button>
+  <p id="settingsStatus" class="notice"></p>
+  <hr style="border-color:#29364d;margin:20px 0">
+  <button id="copyProfile" class="secondary">Copy profile link</button>
+  <button id="logoutButton" class="danger">Sign out</button>
  </section>
 </section>
 </main>
+
+<nav id="bottomNav" class="bottom-nav hidden">
+ <button class="active" data-page="home"><span>💬</span>Chats</button>
+ <button data-page="friends"><span>👥</span>Friends</button>
+ <button data-page="news"><span>🎮</span>Games</button>
+ <button data-page="settings"><span>⚙</span>Settings</button>
+</nav>
 
 <script type="module">
 import {initializeApp} from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
@@ -121,7 +232,7 @@ import {
  onDisconnect,serverTimestamp
 } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-database.js";
 
-const config={
+const firebaseConfig={
  apiKey:"AIzaSyBLjm_Fm3rf6xArbVQm8NsHeMZAQAtYho8",
  authDomain:"gamersnet-b9c7d.firebaseapp.com",
  databaseURL:"https://gamersnet-b9c7d-default-rtdb.firebaseio.com",
@@ -132,364 +243,323 @@ const config={
  measurementId:"G-L3QQF7E0WZ"
 };
 
-const app=initializeApp(config);
+const app=initializeApp(firebaseConfig);
 const auth=getAuth(app);
 const db=getDatabase(app);
 const provider=new GoogleAuthProvider();
-
 const $=id=>document.getElementById(id);
-const path=(...parts)=>ref(db,parts.join("/"));
-const show=(id,yes)=>$(id).classList.toggle("hidden",!yes);
-let user=null,profile=null,selected=null;
-let stopMessages=null,stopPresence=null,stopFriends=null,stopRequests=null;
+const r=(...p)=>ref(db,p.join("/"));
 
-function errorText(error){return error?.message||String(error)}
-function makeButton(label,action,style=""){
- const b=document.createElement("button");
- b.textContent=label;
- if(style)b.className=style;
- b.onclick=action;
- return b;
+let user=null,profile=null,currentFriend=null,currentFriendship=null;
+let previousPage="home";
+let stopMessages=null,stopChatPresence=null,stopFriends=null,stopRequests=null;
+let presenceRef=null;
+
+function show(id,yes){$(id).classList.toggle("hidden",!yes)}
+function btn(label,fn,cls=""){
+ const b=document.createElement("button");b.textContent=label;b.className=cls;b.onclick=fn;return b;
 }
-function makeText(text,cls=""){
- const el=document.createElement("span");
- el.textContent=text;
- if(cls)el.className=cls;
- return el;
+function row(){const d=document.createElement("div");d.className="item";return d}
+function avatar(letter){
+ const d=document.createElement("div");d.className="avatar";d.textContent=(letter||"?").charAt(0).toUpperCase();return d;
 }
-function row(){const el=document.createElement("div");el.className="item";return el}
+function err(e){return e?.message||String(e)}
 
 async function login(){
  try{await signInWithRedirect(auth,provider)}
- catch(e){alert(errorText(e))}
+ catch(e){alert(err(e))}
 }
-$("login").onclick=login;
-$("topLogin").onclick=login;
+$("loginButton").onclick=login;
 
-function clearListeners(){
- if(stopMessages)stopMessages();
- if(stopPresence)stopPresence();
- if(stopFriends)stopFriends();
- if(stopRequests)stopRequests();
- stopMessages=stopPresence=stopFriends=stopRequests=null;
+function stopListeners(){
+ [stopMessages,stopChatPresence,stopFriends,stopRequests].forEach(fn=>{if(fn)fn()});
+ stopMessages=stopChatPresence=stopFriends=stopRequests=null;
 }
 
-async function setPresence(){
- const presenceRef=path("presence",user.uid);
- await onDisconnect(presenceRef).set({
-  state:"offline",lastChanged:serverTimestamp()
- });
- await set(presenceRef,{
-  state:"online",lastChanged:serverTimestamp()
- });
- $("myPresence").textContent="● Online";
+function page(name){
+ ["home","chatPage","newsPage","settingsPage"].forEach(id=>show(id,id===name));
+ show("backButton",name!=="home");
+ show("bottomNav",name!=="chatPage");
+}
+function back(){page(previousPage)}
+$("backButton").onclick=back;
+
+function selectTab(name){
+ ["chats","friends","requests","find"].forEach(t=>show(t+"Tab",t===name));
+ document.querySelectorAll("[data-tab]").forEach(b=>b.classList.toggle("active",b.dataset.tab===name));
+}
+document.querySelectorAll("[data-tab]").forEach(b=>b.onclick=()=>selectTab(b.dataset.tab));
+
+document.querySelectorAll("[data-page]").forEach(b=>{
+ b.onclick=()=>{
+  const target=b.dataset.page;
+  document.querySelectorAll("[data-page]").forEach(x=>x.classList.toggle("active",x===b));
+  if(target==="home"){page("home");selectTab("chats")}
+  if(target==="friends"){page("home");selectTab("friends")}
+  if(target==="news"){previousPage="home";page("newsPage");loadNews()}
+  if(target==="settings")openSettings();
+ };
+});
+$("newsButton").onclick=()=>{previousPage="home";page("newsPage");loadNews()};
+$("settingsButton").onclick=openSettings;
+
+function openSettings(){
+ $("editNickname").value=profile.nickname;
+ $("editUsername").value=profile.username;
+ previousPage="home";page("settingsPage");
 }
 
 onAuthStateChanged(auth,async signedIn=>{
- clearListeners();
- user=signedIn;
- profile=null;
- selected=null;
- show("welcome",!user);
- show("setup",false);
- show("app",false);
+ stopListeners();user=signedIn;profile=null;currentFriend=null;
+ ["home","chatPage","newsPage","settingsPage","setup"].forEach(id=>show(id,false));
+ show("welcome",!user);show("bottomNav",false);show("backButton",false);
  if(!user)return;
  try{
-  const snap=await get(path("profiles",user.uid));
-  if(snap.exists()){
-   profile=snap.val();
-   openApp();
-  }else{
-   $("nickname").value=user.displayName||"";
-   show("setup",true);
-  }
- }catch(e){
-  alert("Profile error: "+errorText(e));
- }
+  const snap=await get(r("profiles",user.uid));
+  if(snap.exists()){profile=snap.val();startApp()}
+  else{$("nickname").value=user.displayName||"";show("setup",true)}
+ }catch(e){alert("Profile error: "+err(e))}
 });
 
 async function saveProfile(){
  const nickname=$("nickname").value.trim();
  const username=$("username").value.trim().toLowerCase();
  const status=$("setupStatus");
- if(!/^[a-z0-9_]{3,20}$/.test(username)){
-  status.textContent="Username must be 3–20 lowercase letters, numbers or underscores.";
-  return;
- }
- if(nickname.length<2||nickname.length>20){
-  status.textContent="Display name must be 2–20 characters.";
-  return;
- }
+ if(!/^[a-z0-9_]{3,20}$/.test(username)){status.textContent="Use 3–20 lowercase letters, numbers or underscores.";return}
+ if(nickname.length<2||nickname.length>20){status.textContent="Display name must be 2–20 characters.";return}
  status.textContent="Saving...";
- const profileRef=path("profiles",user.uid);
- const nameRef=path("usernames",username);
+ const profileRef=r("profiles",user.uid),nameRef=r("usernames",username);
  try{
-  const oldSnap=await get(profileRef);
-  const old=oldSnap.exists()?oldSnap.val():null;
-  const existing=await get(nameRef);
-  if(existing.exists()&&existing.val()!==user.uid){
-   status.textContent="That username is already taken.";
-   return;
-  }
-  if(!existing.exists())await set(nameRef,user.uid);
+  const oldSnap=await get(profileRef),old=oldSnap.exists()?oldSnap.val():null;
+  const reserved=await get(nameRef);
+  if(reserved.exists()&&reserved.val()!==user.uid){status.textContent="Username already taken.";return}
+  if(!reserved.exists())await set(nameRef,user.uid);
   try{
-   await set(profileRef,{
-    username,nickname,
-    createdAt:old?.createdAt||Date.now()
-   });
-   if(old?.username&&old.username!==username){
-    await remove(path("usernames",old.username));
-   }
-  }catch(e){
-   if(!existing.exists())await remove(nameRef);
-   throw e;
-  }
+   await set(profileRef,{username,nickname,createdAt:old?.createdAt||Date.now()});
+   if(old?.username&&old.username!==username)await remove(r("usernames",old.username));
+  }catch(e){if(!reserved.exists())await remove(nameRef);throw e}
   profile={username,nickname,createdAt:old?.createdAt||Date.now()};
-  show("setup",false);
-  openApp();
- }catch(e){
-  status.textContent="Could not save: "+errorText(e);
- }
+  show("setup",false);startApp();
+ }catch(e){status.textContent="Save failed: "+err(e)}
 }
-$("createProfile").onclick=saveProfile;
+$("saveProfile").onclick=saveProfile;
 
-function openApp(){
- show("app",true);
- $("profileName").textContent=profile.nickname;
- $("profileUsername").textContent="@"+profile.username;
- loadRequests();
- loadFriends();
- setPresence().catch(e=>console.error("Presence:",e));
+async function startPresence(){
+ presenceRef=r("presence",user.uid);
+ await onDisconnect(presenceRef).set({state:"offline",lastChanged:serverTimestamp()});
+ await set(presenceRef,{state:"online",lastChanged:serverTimestamp()});
+ $("myStatus").textContent="● Online";
+}
+function startApp(){
+ $("myName").textContent=profile.nickname;
+ $("myUsername").textContent="@"+profile.username;
+ $("myAvatar").textContent=profile.nickname.charAt(0).toUpperCase();
+ show("home",true);page("home");selectTab("chats");
+ startPresence().catch(console.warn);
+ listenFriends();listenRequests();loadChatList();
+ const shared=new URLSearchParams(location.search).get("user");
+ if(shared){$("searchInput").value=shared;selectTab("find")}
 }
 
-$("editProfile").onclick=()=>{
- $("nickname").value=profile.nickname;
- $("username").value=profile.username;
- $("setupStatus").textContent="Save your changes below.";
- show("app",false);
- show("setup",true);
-};
-
-$("logout").onclick=async()=>{
+$("saveChanges").onclick=async()=>{
+ const nickname=$("editNickname").value.trim();
+ const username=$("editUsername").value.trim().toLowerCase();
+ const status=$("settingsStatus");
+ if(nickname.length<2||nickname.length>20){status.textContent="Display name must be 2–20 characters.";return}
+ if(!/^[a-z0-9_]{3,20}$/.test(username)){status.textContent="Invalid username.";return}
  try{
-  await set(path("presence",user.uid),{
-   state:"offline",lastChanged:serverTimestamp()
-  });
-  await signOut(auth);
- }catch(e){alert(errorText(e))}
+  const old=profile.username,newRef=r("usernames",username),check=await get(newRef);
+  if(check.exists()&&check.val()!==user.uid){status.textContent="Username already taken.";return}
+  if(!check.exists())await set(newRef,user.uid);
+  try{
+   await set(r("profiles",user.uid),{username,nickname,createdAt:profile.createdAt});
+   if(old!==username)await remove(r("usernames",old));
+  }catch(e){if(!check.exists())await remove(newRef);throw e}
+  profile={...profile,username,nickname};
+  $("myName").textContent=nickname;$("myUsername").textContent="@"+username;
+  $("myAvatar").textContent=nickname.charAt(0).toUpperCase();
+  status.textContent="Profile updated.";
+ }catch(e){status.textContent="Update failed: "+err(e)}
 };
 
-$("share").onclick=async()=>{
- const url=location.origin+location.pathname+"?user="+encodeURIComponent(profile.username);
- try{
-  await navigator.clipboard.writeText(url);
-  $("profileStatus").textContent="Profile link copied: "+url;
- }catch{
-  $("profileStatus").textContent=url;
- }
+$("copyProfile").onclick=async()=>{
+ const link=location.origin+location.pathname+"?user="+encodeURIComponent(profile.username);
+ try{await navigator.clipboard.writeText(link);$("settingsStatus").textContent="Profile link copied!"}
+ catch{$("settingsStatus").textContent=link}
+};
+$("logoutButton").onclick=async()=>{
+ try{if(presenceRef)await set(presenceRef,{state:"offline",lastChanged:serverTimestamp()});await signOut(auth)}
+ catch(e){alert(err(e))}
 };
 
-document.querySelectorAll("[data-tab]").forEach(btn=>{
- btn.onclick=()=>{
-  document.querySelectorAll("[data-tab]").forEach(b=>b.classList.remove("active"));
-  btn.classList.add("active");
-  document.querySelectorAll(".tab").forEach(t=>t.classList.add("hidden"));
-  show(btn.dataset.tab,true);
- };
-});
-
+$("searchButton").onclick=searchUser;
 async function searchUser(){
- const name=$("searchName").value.trim().toLowerCase();
- const out=$("searchResults");
+ const name=$("searchInput").value.trim().toLowerCase(),out=$("searchResults");
  out.textContent="Searching...";
- if(!/^[a-z0-9_]{3,20}$/.test(name)){
-  out.textContent="Enter a valid username.";
-  return;
- }
+ if(!/^[a-z0-9_]{3,20}$/.test(name)){out.textContent="Enter a valid username.";return}
  try{
-  const found=await get(path("usernames",name));
+  const found=await get(r("usernames",name));
   if(!found.exists()){out.textContent="No user found.";return}
   const uid=found.val();
   if(uid===user.uid){out.textContent="That's your own profile.";return}
-  const pSnap=await get(path("profiles",uid));
-  if(!pSnap.exists()){out.textContent="Profile not found.";return}
-  const p=pSnap.val();
-  const existing=await get(path("friendships",user.uid,uid));
-  const pending=await get(path("requests",uid,user.uid));
-  const incoming=await get(path("requests",user.uid,uid));
-  const box=row();
-  const info=document.createElement("div");
-  info.append(makeText(p.nickname),document.createElement("br"),makeText("@"+p.username,"muted"));
-  box.append(info);
-  if(existing.exists()){
-   box.append(makeText("Already friends","status"));
-  }else if(pending.exists()){
-   box.append(makeText("Request already sent","muted"));
-  }else if(incoming.exists()){
-   box.append(makeText("They have requested you. Check Requests.","muted"));
-  }else{
-   box.append(makeButton("Add friend",()=>sendRequest(uid)));
-  }
-  out.replaceChildren(box);
- }catch(e){out.textContent="Search error: "+errorText(e)}
+  const ps=await get(r("profiles",uid));
+  if(!ps.exists()){out.textContent="Profile not found.";return}
+  const p=ps.val(),friend=await get(r("friendships",user.uid,uid));
+  const sent=await get(r("requests",uid,user.uid));
+  const received=await get(r("requests",user.uid,uid));
+  const box=row(),info=document.createElement("div");info.className="item-info";
+  const strong=document.createElement("strong");strong.textContent=p.nickname;
+  const small=document.createElement("small");small.textContent="@"+p.username;
+  info.append(strong,small);box.append(avatar(p.nickname),info);
+  const actions=document.createElement("div");actions.className="item-actions";
+  if(friend.exists())actions.append(btn("Open chat",()=>openChat(uid,friend.val(),p)));
+  else if(sent.exists())actions.textContent="Request sent";
+  else if(received.exists())actions.textContent="Check Requests";
+  else actions.append(btn("Add friend",()=>sendRequest(uid)));
+  box.append(actions);out.replaceChildren(box);
+ }catch(e){out.textContent="Search failed: "+err(e)}
 }
-$("searchButton").onclick=searchUser;
-
-async function sendRequest(recipient){
- try{
-  await set(path("requests",recipient,user.uid),{
-   createdAt:Date.now()
-  });
-  $("searchResults").textContent="Friend request sent!";
- }catch(e){
-  $("searchResults").textContent="Could not send request: "+errorText(e);
- }
+async function sendRequest(to){
+ try{await set(r("requests",to,user.uid),{createdAt:Date.now()});$("searchResults").textContent="Friend request sent!"}
+ catch(e){alert("Request failed: "+err(e))}
 }
 
-function loadRequests(){
- stopRequests=onValue(path("requests",user.uid),async snap=>{
-  const out=$("requestList");
-  out.replaceChildren();
-  if(!snap.exists()){
-   out.textContent="No new friend requests.";
-   return;
-  }
-  for(const [sender,data] of Object.entries(snap.val())){
-   const pSnap=await get(path("profiles",sender));
-   const p=pSnap.val();
-   if(!p)continue;
-   const box=row();
-   const info=document.createElement("div");
-   info.append(makeText(p.nickname),document.createElement("br"),makeText("@"+p.username,"muted"));
-   box.append(info);
-   box.append(makeButton("Accept",()=>acceptRequest(sender),""));
-   box.append(makeButton("Reject",()=>rejectRequest(sender),"danger"));
-   out.append(box);
+function listenRequests(){
+ stopRequests=onValue(r("requests",user.uid),async snap=>{
+  const out=$("requestList");out.replaceChildren();
+  if(!snap.exists()){out.innerHTML='<div class="empty">No new requests.</div>';return}
+  for(const [sender] of Object.entries(snap.val())){
+   const ps=await get(r("profiles",sender)),p=ps.val();if(!p)continue;
+   const box=row(),info=document.createElement("div");info.className="item-info";
+   const strong=document.createElement("strong");strong.textContent=p.nickname;
+   const small=document.createElement("small");small.textContent="@"+p.username;
+   info.append(strong,small);box.append(avatar(p.nickname),info);
+   const actions=document.createElement("div");actions.className="item-actions";
+   actions.append(btn("Accept",()=>acceptRequest(sender)),btn("Reject",()=>rejectRequest(sender),"danger"));
+   box.append(actions);out.append(box);
   }
  });
 }
-
 async function acceptRequest(sender){
  try{
-  const request=await get(path("requests",user.uid,sender));
-  if(!request.exists()){alert("This request is no longer available.");return}
-  const friendship={
-   recipientUid:user.uid,
-   senderUid:sender,
-   createdAt:Date.now()
-  };
-  await set(path("friendships",sender,user.uid),friendship);
-  await set(path("friendships",user.uid,sender),friendship);
-  await remove(path("requests",user.uid,sender));
-  alert("Friend request accepted!");
- }catch(e){alert("Could not accept request: "+errorText(e))}
+  const req=await get(r("requests",user.uid,sender));
+  if(!req.exists()){alert("Request no longer exists.");return}
+  const friendship={recipientUid:user.uid,senderUid:sender,createdAt:Date.now()};
+  await set(r("friendships",sender,user.uid),friendship);
+  await set(r("friendships",user.uid,sender),friendship);
+  await remove(r("requests",user.uid,sender));
+  alert("Friend added!");
+ }catch(e){alert("Accept failed: "+err(e))}
 }
-
 async function rejectRequest(sender){
- try{
-  await remove(path("requests",user.uid,sender));
- }catch(e){alert("Could not reject request: "+errorText(e))}
+ try{await remove(r("requests",user.uid,sender))}
+ catch(e){alert(err(e))}
 }
 
-function loadFriends(){
- stopFriends=onValue(path("friendships",user.uid),async snap=>{
-  const out=$("friendList");
-  out.replaceChildren();
-  if(!snap.exists()){
-   out.textContent="You haven't added any friends yet.";
-   return;
-  }
+function listenFriends(){
+ stopFriends=onValue(r("friendships",user.uid),async snap=>{
+  const out=$("friendList");out.replaceChildren();
+  if(!snap.exists()){out.innerHTML='<div class="empty">Your friends will appear here.</div>';loadChatList();return}
   for(const [other,friendship] of Object.entries(snap.val())){
-   const pSnap=await get(path("profiles",other));
-   const p=pSnap.val();
-   if(!p)continue;
-   const box=row();
-   const info=document.createElement("div");
-   info.append(makeText(p.nickname),document.createElement("br"),makeText("@"+p.username,"muted"));
-   box.append(info);
-   box.append(makeButton("Message",()=>openChat(other,friendship)));
-   out.append(box);
+   const ps=await get(r("profiles",other)),p=ps.val();if(!p)continue;
+   const box=row(),info=document.createElement("div");info.className="item-info";
+   const strong=document.createElement("strong");strong.textContent=p.nickname;
+   const small=document.createElement("small");small.textContent="@"+p.username;
+   info.append(strong,small);box.append(avatar(p.nickname),info);
+   box.append(btn("Message",()=>openChat(other,friendship,p)));out.append(box);
   }
+  loadChatList();
  });
 }
-
-function openChat(other,friendship){
- selected={other,friendship};
- const recipient=friendship.recipientUid;
- const sender=friendship.senderUid;
- $("chatTitle").textContent="Chat with "+other;
- $("messages").replaceChildren();
- $("messageInput").disabled=false;
- $("sendMessage").disabled=false;
- document.querySelector('[data-tab="chat"]').click();
-
- if(stopMessages)stopMessages();
- if(stopPresence)stopPresence();
-
- const chatRef=path("chats",recipient,sender,"messages");
- stopMessages=onValue(chatRef,snap=>{
-  const out=$("messages");
-  out.replaceChildren();
-  if(!snap.exists()){
-   out.textContent="No messages yet. Say hello!";
-   return;
+async function loadChatList(){
+ const out=$("chatList");
+ try{
+  const snap=await get(r("friendships",user.uid));out.replaceChildren();
+  if(!snap.exists()){out.innerHTML='<div class="empty">No chats yet. Find people and add friends.</div>';return}
+  for(const [other,friendship] of Object.entries(snap.val())){
+   const ps=await get(r("profiles",other)),p=ps.val();if(!p)continue;
+   const box=row(),info=document.createElement("div");info.className="item-info";
+   const strong=document.createElement("strong");strong.textContent=p.nickname;
+   const small=document.createElement("small");small.textContent="@"+p.username;
+   info.append(strong,small);box.append(avatar(p.nickname),info);
+   box.append(btn("Open",()=>openChat(other,friendship,p)));out.append(box);
   }
-  const entries=Object.entries(snap.val()).sort((a,b)=>
-   (a[1].createdAt||0)-(b[1].createdAt||0)
-  );
-  entries.forEach(([id,m])=>{
-   const bubble=document.createElement("div");
-   bubble.className="bubble"+(m.senderUid===user.uid?" mine":"");
-   const content=document.createElement("div");
-   content.textContent=m.text;
-   const time=document.createElement("small");
-   time.textContent=new Date(m.createdAt).toLocaleString();
-   bubble.append(content,time);
-   out.append(bubble);
+ }catch(e){out.textContent="Could not load chats: "+err(e)}
+}
+
+function openChat(other,friendship,p){
+ currentFriend=other;currentFriendship=friendship;previousPage="home";
+ $("chatName").textContent=p.nickname;
+ $("chatAvatar").textContent=p.nickname.charAt(0).toUpperCase();
+ $("messages").innerHTML='<div class="empty">Loading messages...</div>';
+ $("messageInput").value="";page("chatPage");
+ if(stopMessages)stopMessages();if(stopChatPresence)stopChatPresence();
+ const chatRef=r("chats",friendship.recipientUid,friendship.senderUid,"messages");
+ stopMessages=onValue(chatRef,snap=>{
+  const out=$("messages");out.replaceChildren();
+  if(!snap.exists()){out.innerHTML='<div class="empty">No messages yet. Say hello!</div>';return}
+  Object.values(snap.val()).sort((a,b)=>(a.createdAt||0)-(b.createdAt||0)).forEach(m=>{
+   const bubble=document.createElement("div");bubble.className="bubble"+(m.senderUid===user.uid?" mine":"");
+   const content=document.createElement("div");content.textContent=m.text;
+   const time=document.createElement("small");time.textContent=m.createdAt?new Date(m.createdAt).toLocaleString():"";
+   bubble.append(content,time);out.append(bubble);
   });
   out.scrollTop=out.scrollHeight;
- });
-
- stopPresence=onValue(path("presence",other),snap=>{
+ },e=>{$("messages").textContent="Message error: "+err(e)});
+ stopChatPresence=onValue(r("presence",other),snap=>{
   const data=snap.val();
-  if(data?.state==="online"){
-   $("chatPresence").textContent="● Online";
-  }else if(data?.lastChanged){
-   $("chatPresence").textContent="Offline · Last seen "+new Date(data.lastChanged).toLocaleString();
-  }else{
-   $("chatPresence").textContent="Offline";
-  }
+  $("chatStatus").textContent=data?.state==="online"?"● Online":data?.lastChanged?"Last seen "+new Date(data.lastChanged).toLocaleString():"Offline";
  });
 }
-
 async function sendMessage(){
- if(!selected)return;
- const text=$("messageInput").value.trim();
- if(!text||text.length>2000)return;
- const f=selected.friendship;
+ if(!currentFriendship)return;
+ const text=$("messageInput").value.trim();if(!text||text.length>2000)return;
  try{
-  await push(path("chats",f.recipientUid,f.senderUid,"messages"),{
-   senderUid:user.uid,
-   text,
-   createdAt:Date.now()
-  });
+  const f=currentFriendship;
+  await push(r("chats",f.recipientUid,f.senderUid,"messages"),{senderUid:user.uid,text,createdAt:Date.now()});
   $("messageInput").value="";
+ }catch(e){alert("Message failed: "+err(e))}
+}
+$("sendButton").onclick=sendMessage;
+$("messageInput").addEventListener("keydown",e=>{if(e.key==="Enter")sendMessage()});
+
+/* Gaming news feed */
+async function loadNews(){
+ const status=$("newsStatus"),list=$("newsList");
+ status.textContent="Checking for recent gaming headlines...";
+ try{
+  const feed="https://news.google.com/rss/search?q=video+games+new+releases+game+updates&hl=en-US&gl=US&ceid=US:en";
+  const response=await fetch("https://api.allorigins.win/raw?url="+encodeURIComponent(feed));
+  if(!response.ok)throw new Error("News service unavailable");
+  const xml=new DOMParser().parseFromString(await response.text(),"application/xml");
+  if(xml.querySelector("parsererror"))throw new Error("Could not read news feed");
+  const items=[...xml.querySelectorAll("item")].slice(0,15);
+  if(!items.length)throw new Error("No headlines available");
+  list.replaceChildren();
+  for(const item of items){
+   const title=item.querySelector("title")?.textContent?.trim()||"Gaming update";
+   const link=item.querySelector("link")?.textContent?.trim()||"";
+   const date=item.querySelector("pubDate")?.textContent||"";
+   const desc=item.querySelector("description")?.textContent||"";
+   const card=document.createElement("article");card.className="news-card";
+   const a=document.createElement("a");a.textContent=title;
+   try{const u=new URL(link);if(!["https:","http:"].includes(u.protocol))throw 0;a.href=u.href;a.target="_blank";a.rel="noopener noreferrer"}catch{}
+   const p=document.createElement("p");p.textContent=new DOMParser().parseFromString(desc,"text/html").body.textContent.slice(0,220);
+   const time=document.createElement("div");time.className="news-date";
+   const d=new Date(date);time.textContent=Number.isNaN(d.getTime())?"Gaming news":d.toLocaleString();
+   card.append(a,p,time);list.append(card);
+  }
+  status.textContent="Latest headlines loaded · "+new Date().toLocaleTimeString();
  }catch(e){
-  alert("Message not sent: "+errorText(e));
+  status.textContent="Gaming news is temporarily unavailable. Try Refresh later.";
+  if(!list.children.length)list.innerHTML='<div class="empty">The news service could not load headlines.</div>';
+  console.warn(e);
  }
 }
-$("sendMessage").onclick=sendMessage;
-$("messageInput").addEventListener("keydown",e=>{
- if(e.key==="Enter")sendMessage();
-});
+$("refreshNews").onclick=loadNews;
+setInterval(()=>{if(!$("newsPage").classList.contains("hidden"))loadNews()},6*60*60*1000);
 
-getRedirectResult(auth).catch(e=>{
- console.error(e);
- alert("Google sign-in error: "+errorText(e));
-});
-
-const shared=new URLSearchParams(location.search).get("user");
-if(shared)$("searchName").value=shared;
+getRedirectResult(auth).catch(e=>{console.error(e);alert("Google sign-in error: "+err(e))});
 </script>
 </body>
 </html>
