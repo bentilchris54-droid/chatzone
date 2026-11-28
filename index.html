@@ -3,299 +3,493 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ChatZone</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#080812;color:#f5f3ff;font-family:Arial,sans-serif}
-header{padding:18px 20px;background:#101020;border-bottom:1px solid #282044;display:flex;justify-content:space-between;align-items:center}
+body{margin:0;background:#080812;color:#f4f0ff;font-family:Arial,sans-serif}
+header{background:#111020;padding:17px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #302448}
 .logo{font-size:23px;font-weight:bold;color:#b58aff}
 .logo span{color:#42e8ff}
-button{border:0;border-radius:9px;padding:12px 16px;background:#8b5cf6;color:white;font-weight:bold;cursor:pointer}
+main{max-width:850px;margin:22px auto;padding:12px}
+.panel{background:#111120;border:1px solid #302448;border-radius:15px;padding:18px;margin-bottom:16px}
+h2{color:#c4a5ff;margin-top:0}
+input{width:100%;padding:13px;margin:8px 0;background:#171629;color:white;border:1px solid #40345d;border-radius:9px}
+button{background:#8657ed;color:white;border:0;border-radius:9px;padding:11px 14px;font-weight:bold;cursor:pointer;margin:3px}
 button:disabled{opacity:.5;cursor:not-allowed}
-input{width:100%;padding:13px;margin:8px 0;background:#141426;border:1px solid #383052;border-radius:9px;color:white;outline:none}
-main{max-width:850px;margin:25px auto;padding:15px}
-.panel{background:#111120;border:1px solid #292343;border-radius:15px;padding:20px;margin-bottom:18px}
-h2{color:#c3a4ff;margin-top:0}
-small,.muted{color:#9995ae}
+.secondary{background:#302544}
+.danger{background:#843d61}
 .hidden{display:none!important}
-.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px}
-.tabs button{background:#211b35}
-.tabs button.active{background:#8b5cf6}
-.item{padding:13px;border-bottom:1px solid #292343;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.tabs{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:15px}
+.tabs button{background:#29213e}
+.tabs button.active{background:#8657ed}
+.item{padding:12px 3px;border-bottom:1px solid #302448;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
 .item:last-child{border:0}
-.item button{padding:8px 11px}
-a{color:#55ddff;overflow-wrap:anywhere}
-#messages{height:260px;overflow-y:auto;background:#090914;border-radius:10px;padding:12px;margin:12px 0}
-.message{padding:9px 12px;background:#24203b;border-radius:10px;margin:7px 0;max-width:85%;overflow-wrap:anywhere}
-.notice{color:#ffcf70;font-size:13px;line-height:1.5}
+.muted{color:#aaa4bf;font-size:14px}
+.notice{color:#ffce76;font-size:13px;line-height:1.5}
+#messages{height:310px;overflow-y:auto;background:#090914;border-radius:10px;padding:12px}
+.bubble{background:#29213e;padding:10px 13px;margin:8px 0;border-radius:12px;max-width:85%;overflow-wrap:anywhere}
+.mine{background:#53349a;margin-left:auto}
+.bubble small{display:block;color:#c5b6e8;margin-top:5px;font-size:10px}
+.status{color:#61e8bd;font-size:12px}
+a{color:#53dcff}
 </style>
 </head>
 <body>
 <header>
  <div class="logo">CHAT<span>ZONE</span></div>
- <button id="signInBtn">Google Sign In</button>
+ <button id="topLogin">Google Sign In</button>
 </header>
 
 <main>
- <section id="welcome" class="panel">
-  <h2>Welcome to ChatZone</h2>
-  <p class="muted">Your username. Your people. Your conversations.</p>
-  <p>Sign in with Google to get started.</p>
-  <button id="welcomeSignIn">Sign in with Google</button>
+<section id="welcome" class="panel">
+ <h2>Welcome to ChatZone</h2>
+ <p class="muted">Connect with people using usernames, not phone numbers.</p>
+ <button id="login">Sign in with Google</button>
+</section>
+
+<section id="setup" class="panel hidden">
+ <h2>Create your profile</h2>
+ <input id="nickname" placeholder="Your display name">
+ <input id="username" placeholder="Username (3–20 letters, numbers or _)">
+ <button id="createProfile">Save profile</button>
+ <p id="setupStatus" class="notice"></p>
+</section>
+
+<section id="app" class="hidden">
+ <div class="panel">
+  <h2>Your profile</h2>
+  <div id="profileName"></div>
+  <div id="profileUsername" class="muted"></div>
+  <p id="myPresence" class="status"></p>
+  <button id="share">Copy profile link</button>
+  <button id="editProfile" class="secondary">Edit profile</button>
+  <button id="logout" class="secondary">Sign out</button>
+  <p id="profileStatus" class="notice"></p>
+ </div>
+
+ <div class="tabs">
+  <button class="active" data-tab="find">Find people</button>
+  <button data-tab="requests">Requests</button>
+  <button data-tab="friends">Friends</button>
+  <button data-tab="chat">Messages</button>
+ </div>
+
+ <section id="find" class="panel tab">
+  <h2>Find people</h2>
+  <input id="searchName" placeholder="Enter a username">
+  <button id="searchButton">Search</button>
+  <div id="searchResults"></div>
  </section>
 
- <section id="setup" class="panel hidden">
-  <h2>Create your profile</h2>
-  <p class="muted">Choose a unique username.</p>
-  <input id="usernameInput" placeholder="Username (3–20 characters)">
-  <input id="nicknameInput" placeholder="Display name">
-  <button id="saveProfile">Create profile</button>
-  <p id="setupStatus" class="notice"></p>
+ <section id="requests" class="panel tab hidden">
+  <h2>Friend requests</h2>
+  <div id="requestList"></div>
  </section>
 
- <section id="app" class="hidden">
-  <section class="panel">
-   <h2>Your profile</h2>
-   <p id="myName"></p>
-   <p id="myUsername" class="muted"></p>
-   <button id="shareProfile">Share profile link</button>
-   <button id="changeUsername" style="background:#292343">Change username</button>
-   <button id="signOut" style="background:#393047">Sign out</button>
-   <p id="profileStatus" class="notice"></p>
-  </section>
+ <section id="friends" class="panel tab hidden">
+  <h2>Your friends</h2>
+  <div id="friendList"></div>
+ </section>
 
-  <div class="tabs">
-   <button class="active" data-tab="search">Find people</button>
-   <button data-tab="requests">Requests</button>
-   <button data-tab="friends">Friends</button>
-   <button data-tab="chat">Messages</button>
+ <section id="chat" class="panel tab hidden">
+  <h2 id="chatTitle">Your messages</h2>
+  <p id="chatPresence" class="status"></p>
+  <div id="messages">
+   <p class="muted">Choose a friend to start chatting.</p>
   </div>
-
-  <section id="search" class="panel tab">
-   <h2>Find people</h2>
-   <input id="searchInput" placeholder="Search username">
-   <button id="searchBtn">Search</button>
-   <div id="searchResults"></div>
-  </section>
-
-  <section id="requests" class="panel tab hidden">
-   <h2>Friend requests</h2>
-   <p class="notice">Friend request actions will be enabled after the secure backend is installed.</p>
-   <div id="requestList"></div>
-  </section>
-
-  <section id="friends" class="panel tab hidden">
-   <h2>Your friends</h2>
-   <div id="friendList"></div>
-  </section>
-
-  <section id="chat" class="panel tab hidden">
-   <h2>Private messages</h2>
-   <p class="muted">Choose a friend to open a conversation.</p>
-   <div id="messages">
-    <p class="muted">Your conversations will appear here after secure messaging is connected.</p>
-   </div>
-   <input id="messageInput" placeholder="Write a message..." disabled>
-   <button disabled>Send</button>
-   <hr style="border-color:#292343;margin:20px 0">
-   <h2>Paid message</h2>
-   <p class="muted">Send a message to someone before they accept your friend request.</p>
-   <button disabled>Paid Message — Coming Soon</button>
-   <p class="notice">Payments are not enabled. No money will be collected.</p>
-  </section>
+  <input id="messageInput" placeholder="Write a message..." disabled>
+  <button id="sendMessage" disabled>Send message</button>
+  <p class="muted">Messages are available only between accepted friends.</p>
+  <hr style="border-color:#302448;margin:22px 0">
+  <h2>Paid message</h2>
+  <p class="muted">A future option to contact someone before they accept your request.</p>
+  <button disabled>Paid Message — Coming Soon</button>
+  <p class="notice">Payments are not enabled. No money will be collected.</p>
  </section>
+</section>
 </main>
 
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
+import {initializeApp} from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
 import {
- getAuth, GoogleAuthProvider, signInWithRedirect,
- getRedirectResult, onAuthStateChanged, signOut
+ getAuth,GoogleAuthProvider,signInWithRedirect,
+ getRedirectResult,onAuthStateChanged,signOut
 } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
 import {
- getDatabase, ref, get, set, remove
+ getDatabase,ref,get,set,remove,push,onValue,
+ onDisconnect,serverTimestamp
 } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-database.js";
 
-const firebaseConfig = {
- apiKey: "AIzaSyBLjm_Fm3rf6xArbVQm8NsHeMZAQAtYho8",
- authDomain: "gamersnet-b9c7d.firebaseapp.com",
- databaseURL: "https://gamersnet-b9c7d-default-rtdb.firebaseio.com",
- projectId: "gamersnet-b9c7d",
- storageBucket: "gamersnet-b9c7d.firebasestorage.app",
- messagingSenderId: "706719567863",
- appId: "1:706719567863:web:c45901a666cea84b5368f2",
- measurementId: "G-L3QQF7E0WZ"
+const config={
+ apiKey:"AIzaSyBLjm_Fm3rf6xArbVQm8NsHeMZAQAtYho8",
+ authDomain:"gamersnet-b9c7d.firebaseapp.com",
+ databaseURL:"https://gamersnet-b9c7d-default-rtdb.firebaseio.com",
+ projectId:"gamersnet-b9c7d",
+ storageBucket:"gamersnet-b9c7d.firebasestorage.app",
+ messagingSenderId:"706719567863",
+ appId:"1:706719567863:web:c45901a666cea84b5368f2",
+ measurementId:"G-L3QQF7E0WZ"
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getDatabase(app);
-const provider = new GoogleAuthProvider();
+const app=initializeApp(config);
+const auth=getAuth(app);
+const db=getDatabase(app);
+const provider=new GoogleAuthProvider();
 
-let currentUser = null;
-let myProfile = null;
+const $=id=>document.getElementById(id);
+const path=(...parts)=>ref(db,parts.join("/"));
+const show=(id,yes)=>$(id).classList.toggle("hidden",!yes);
+let user=null,profile=null,selected=null;
+let stopMessages=null,stopPresence=null,stopFriends=null,stopRequests=null;
 
-const $ = id => document.getElementById(id);
-const show = (id, yes) => $(id).classList.toggle("hidden", !yes);
+function errorText(error){return error?.message||String(error)}
+function makeButton(label,action,style=""){
+ const b=document.createElement("button");
+ b.textContent=label;
+ if(style)b.className=style;
+ b.onclick=action;
+ return b;
+}
+function makeText(text,cls=""){
+ const el=document.createElement("span");
+ el.textContent=text;
+ if(cls)el.className=cls;
+ return el;
+}
+function row(){const el=document.createElement("div");el.className="item";return el}
 
 async function login(){
- try {
-  await signInWithRedirect(auth, provider);
- } catch(error) {
-  alert(error.message);
- }
+ try{await signInWithRedirect(auth,provider)}
+ catch(e){alert(errorText(e))}
 }
-$("signInBtn").onclick = login;
-$("welcomeSignIn").onclick = login;
+$("login").onclick=login;
+$("topLogin").onclick=login;
 
-onAuthStateChanged(auth, async user => {
- currentUser = user;
- show("welcome", !user);
- show("setup", false);
- show("app", false);
- if(!user) return;
+function clearListeners(){
+ if(stopMessages)stopMessages();
+ if(stopPresence)stopPresence();
+ if(stopFriends)stopFriends();
+ if(stopRequests)stopRequests();
+ stopMessages=stopPresence=stopFriends=stopRequests=null;
+}
 
- try {
-  const snap = await get(ref(db, "profiles/" + user.uid));
+async function setPresence(){
+ const presenceRef=path("presence",user.uid);
+ await onDisconnect(presenceRef).set({
+  state:"offline",lastChanged:serverTimestamp()
+ });
+ await set(presenceRef,{
+  state:"online",lastChanged:serverTimestamp()
+ });
+ $("myPresence").textContent="● Online";
+}
+
+onAuthStateChanged(auth,async signedIn=>{
+ clearListeners();
+ user=signedIn;
+ profile=null;
+ selected=null;
+ show("welcome",!user);
+ show("setup",false);
+ show("app",false);
+ if(!user)return;
+ try{
+  const snap=await get(path("profiles",user.uid));
   if(snap.exists()){
-   myProfile = snap.val();
-   renderProfile();
-   show("app", true);
-  } else {
-   $("nicknameInput").value = user.displayName || "";
-   show("setup", true);
+   profile=snap.val();
+   openApp();
+  }else{
+   $("nickname").value=user.displayName||"";
+   show("setup",true);
   }
- } catch(error) {
-  alert("Could not load your profile: " + error.message);
+ }catch(e){
+  alert("Profile error: "+errorText(e));
  }
 });
 
-$("saveProfile").onclick = async () => {
- const username = $("usernameInput").value.trim().toLowerCase();
- const nickname = $("nicknameInput").value.trim();
- const status = $("setupStatus");
+async function saveProfile(){
+ const nickname=$("nickname").value.trim();
+ const username=$("username").value.trim().toLowerCase();
+ const status=$("setupStatus");
  if(!/^[a-z0-9_]{3,20}$/.test(username)){
-  status.textContent = "Use 3–20 lowercase letters, numbers or underscores.";
+  status.textContent="Username must be 3–20 lowercase letters, numbers or underscores.";
   return;
  }
- if(nickname.length < 2 || nickname.length > 20){
-  status.textContent = "Display name must be 2–20 characters.";
+ if(nickname.length<2||nickname.length>20){
+  status.textContent="Display name must be 2–20 characters.";
   return;
  }
- status.textContent = "Saving profile...";
- const usernameRef = ref(db, "usernames/" + username);
- const profileRef = ref(db, "profiles/" + currentUser.uid);
- try {
-  const oldSnap = await get(profileRef);
-  const oldProfile = oldSnap.exists() ? oldSnap.val() : null;
-  const nameSnap = await get(usernameRef);
-  if(nameSnap.exists() && nameSnap.val() !== currentUser.uid){
-   status.textContent = "That username is already taken.";
+ status.textContent="Saving...";
+ const profileRef=path("profiles",user.uid);
+ const nameRef=path("usernames",username);
+ try{
+  const oldSnap=await get(profileRef);
+  const old=oldSnap.exists()?oldSnap.val():null;
+  const existing=await get(nameRef);
+  if(existing.exists()&&existing.val()!==user.uid){
+   status.textContent="That username is already taken.";
    return;
   }
-  if(!nameSnap.exists()) await set(usernameRef, currentUser.uid);
-  try {
-   const profile = {
-    username, nickname,
-    createdAt: oldProfile?.createdAt || Date.now()
-   };
-   await set(profileRef, profile);
-   if(oldProfile?.username && oldProfile.username !== username){
-    await remove(ref(db, "usernames/" + oldProfile.username));
+  if(!existing.exists())await set(nameRef,user.uid);
+  try{
+   await set(profileRef,{
+    username,nickname,
+    createdAt:old?.createdAt||Date.now()
+   });
+   if(old?.username&&old.username!==username){
+    await remove(path("usernames",old.username));
    }
-   myProfile = profile;
-   renderProfile();
-   show("setup", false);
-   show("app", true);
-  } catch(error) {
-   if(!nameSnap.exists()) await remove(usernameRef);
-   throw error;
+  }catch(e){
+   if(!existing.exists())await remove(nameRef);
+   throw e;
   }
- } catch(error) {
-  status.textContent = "Could not save: " + error.message;
+  profile={username,nickname,createdAt:old?.createdAt||Date.now()};
+  show("setup",false);
+  openApp();
+ }catch(e){
+  status.textContent="Could not save: "+errorText(e);
  }
-};
+}
+$("createProfile").onclick=saveProfile;
 
-function renderProfile(){
- $("myName").textContent = myProfile.nickname;
- $("myUsername").textContent = "@" + myProfile.username;
+function openApp(){
+ show("app",true);
+ $("profileName").textContent=profile.nickname;
+ $("profileUsername").textContent="@"+profile.username;
+ loadRequests();
+ loadFriends();
+ setPresence().catch(e=>console.error("Presence:",e));
 }
 
-$("shareProfile").onclick = async () => {
- const url = location.origin + location.pathname + "?user=" + encodeURIComponent(myProfile.username);
- try {
+$("editProfile").onclick=()=>{
+ $("nickname").value=profile.nickname;
+ $("username").value=profile.username;
+ $("setupStatus").textContent="Save your changes below.";
+ show("app",false);
+ show("setup",true);
+};
+
+$("logout").onclick=async()=>{
+ try{
+  await set(path("presence",user.uid),{
+   state:"offline",lastChanged:serverTimestamp()
+  });
+  await signOut(auth);
+ }catch(e){alert(errorText(e))}
+};
+
+$("share").onclick=async()=>{
+ const url=location.origin+location.pathname+"?user="+encodeURIComponent(profile.username);
+ try{
   await navigator.clipboard.writeText(url);
-  $("profileStatus").textContent = "Profile link copied: " + url;
- } catch {
-  $("profileStatus").textContent = url;
+  $("profileStatus").textContent="Profile link copied: "+url;
+ }catch{
+  $("profileStatus").textContent=url;
  }
 };
 
-$("changeUsername").onclick = () => {
- $("usernameInput").value = myProfile.username;
- $("nicknameInput").value = myProfile.nickname;
- show("app", false);
- show("setup", true);
-};
-
-$("signOut").onclick = () => signOut(auth);
-
-document.querySelectorAll("[data-tab]").forEach(button => {
- button.onclick = () => {
-  document.querySelectorAll("[data-tab]").forEach(b => b.classList.remove("active"));
-  button.classList.add("active");
-  document.querySelectorAll(".tab").forEach(tab => tab.classList.add("hidden"));
-  show(button.dataset.tab, true);
+document.querySelectorAll("[data-tab]").forEach(btn=>{
+ btn.onclick=()=>{
+  document.querySelectorAll("[data-tab]").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+  document.querySelectorAll(".tab").forEach(t=>t.classList.add("hidden"));
+  show(btn.dataset.tab,true);
  };
 });
 
-$("searchBtn").onclick = async () => {
- const username = $("searchInput").value.trim().toLowerCase();
- const results = $("searchResults");
- results.textContent = "Searching...";
- if(!/^[a-z0-9_]{3,20}$/.test(username)){
-  results.textContent = "Enter a valid username.";
+async function searchUser(){
+ const name=$("searchName").value.trim().toLowerCase();
+ const out=$("searchResults");
+ out.textContent="Searching...";
+ if(!/^[a-z0-9_]{3,20}$/.test(name)){
+  out.textContent="Enter a valid username.";
   return;
  }
- try {
-  const snap = await get(ref(db, "usernames/" + username));
-  if(!snap.exists()){
-   results.textContent = "No user found.";
-   return;
+ try{
+  const found=await get(path("usernames",name));
+  if(!found.exists()){out.textContent="No user found.";return}
+  const uid=found.val();
+  if(uid===user.uid){out.textContent="That's your own profile.";return}
+  const pSnap=await get(path("profiles",uid));
+  if(!pSnap.exists()){out.textContent="Profile not found.";return}
+  const p=pSnap.val();
+  const existing=await get(path("friendships",user.uid,uid));
+  const pending=await get(path("requests",uid,user.uid));
+  const incoming=await get(path("requests",user.uid,uid));
+  const box=row();
+  const info=document.createElement("div");
+  info.append(makeText(p.nickname),document.createElement("br"),makeText("@"+p.username,"muted"));
+  box.append(info);
+  if(existing.exists()){
+   box.append(makeText("Already friends","status"));
+  }else if(pending.exists()){
+   box.append(makeText("Request already sent","muted"));
+  }else if(incoming.exists()){
+   box.append(makeText("They have requested you. Check Requests.","muted"));
+  }else{
+   box.append(makeButton("Add friend",()=>sendRequest(uid)));
   }
-  const uid = snap.val();
-  if(uid === currentUser.uid){
-   results.textContent = "That's your own username.";
-   return;
-  }
-  const profileSnap = await get(ref(db, "profiles/" + uid));
-  if(!profileSnap.exists()){
-   results.textContent = "Profile not found.";
-   return;
-  }
-  const p = profileSnap.val();
-  const item = document.createElement("div");
-  item.className = "item";
-  const label = document.createElement("span");
-  label.textContent = p.nickname + " (@" + p.username + ")";
-  const button = document.createElement("button");
-  button.textContent = "Request feature coming soon";
-  button.disabled = true;
-  item.append(label, button);
-  results.replaceChildren(item);
- } catch(error) {
-  results.textContent = "Search failed: " + error.message;
+  out.replaceChildren(box);
+ }catch(e){out.textContent="Search error: "+errorText(e)}
+}
+$("searchButton").onclick=searchUser;
+
+async function sendRequest(recipient){
+ try{
+  await set(path("requests",recipient,user.uid),{
+   createdAt:Date.now()
+  });
+  $("searchResults").textContent="Friend request sent!";
+ }catch(e){
+  $("searchResults").textContent="Could not send request: "+errorText(e);
  }
-};
+}
 
-const sharedUser = new URLSearchParams(location.search).get("user");
-if(sharedUser) $("searchInput").value = sharedUser;
+function loadRequests(){
+ stopRequests=onValue(path("requests",user.uid),async snap=>{
+  const out=$("requestList");
+  out.replaceChildren();
+  if(!snap.exists()){
+   out.textContent="No new friend requests.";
+   return;
+  }
+  for(const [sender,data] of Object.entries(snap.val())){
+   const pSnap=await get(path("profiles",sender));
+   const p=pSnap.val();
+   if(!p)continue;
+   const box=row();
+   const info=document.createElement("div");
+   info.append(makeText(p.nickname),document.createElement("br"),makeText("@"+p.username,"muted"));
+   box.append(info);
+   box.append(makeButton("Accept",()=>acceptRequest(sender),""));
+   box.append(makeButton("Reject",()=>rejectRequest(sender),"danger"));
+   out.append(box);
+  }
+ });
+}
 
-getRedirectResult(auth).catch(error => {
- console.error("Sign-in error:", error);
- alert("Google sign-in error: " + error.message);
+async function acceptRequest(sender){
+ try{
+  const request=await get(path("requests",user.uid,sender));
+  if(!request.exists()){alert("This request is no longer available.");return}
+  const friendship={
+   recipientUid:user.uid,
+   senderUid:sender,
+   createdAt:Date.now()
+  };
+  await set(path("friendships",sender,user.uid),friendship);
+  await set(path("friendships",user.uid,sender),friendship);
+  await remove(path("requests",user.uid,sender));
+  alert("Friend request accepted!");
+ }catch(e){alert("Could not accept request: "+errorText(e))}
+}
+
+async function rejectRequest(sender){
+ try{
+  await remove(path("requests",user.uid,sender));
+ }catch(e){alert("Could not reject request: "+errorText(e))}
+}
+
+function loadFriends(){
+ stopFriends=onValue(path("friendships",user.uid),async snap=>{
+  const out=$("friendList");
+  out.replaceChildren();
+  if(!snap.exists()){
+   out.textContent="You haven't added any friends yet.";
+   return;
+  }
+  for(const [other,friendship] of Object.entries(snap.val())){
+   const pSnap=await get(path("profiles",other));
+   const p=pSnap.val();
+   if(!p)continue;
+   const box=row();
+   const info=document.createElement("div");
+   info.append(makeText(p.nickname),document.createElement("br"),makeText("@"+p.username,"muted"));
+   box.append(info);
+   box.append(makeButton("Message",()=>openChat(other,friendship)));
+   out.append(box);
+  }
+ });
+}
+
+function openChat(other,friendship){
+ selected={other,friendship};
+ const recipient=friendship.recipientUid;
+ const sender=friendship.senderUid;
+ $("chatTitle").textContent="Chat with "+other;
+ $("messages").replaceChildren();
+ $("messageInput").disabled=false;
+ $("sendMessage").disabled=false;
+ document.querySelector('[data-tab="chat"]').click();
+
+ if(stopMessages)stopMessages();
+ if(stopPresence)stopPresence();
+
+ const chatRef=path("chats",recipient,sender,"messages");
+ stopMessages=onValue(chatRef,snap=>{
+  const out=$("messages");
+  out.replaceChildren();
+  if(!snap.exists()){
+   out.textContent="No messages yet. Say hello!";
+   return;
+  }
+  const entries=Object.entries(snap.val()).sort((a,b)=>
+   (a[1].createdAt||0)-(b[1].createdAt||0)
+  );
+  entries.forEach(([id,m])=>{
+   const bubble=document.createElement("div");
+   bubble.className="bubble"+(m.senderUid===user.uid?" mine":"");
+   const content=document.createElement("div");
+   content.textContent=m.text;
+   const time=document.createElement("small");
+   time.textContent=new Date(m.createdAt).toLocaleString();
+   bubble.append(content,time);
+   out.append(bubble);
+  });
+  out.scrollTop=out.scrollHeight;
+ });
+
+ stopPresence=onValue(path("presence",other),snap=>{
+  const data=snap.val();
+  if(data?.state==="online"){
+   $("chatPresence").textContent="● Online";
+  }else if(data?.lastChanged){
+   $("chatPresence").textContent="Offline · Last seen "+new Date(data.lastChanged).toLocaleString();
+  }else{
+   $("chatPresence").textContent="Offline";
+  }
+ });
+}
+
+async function sendMessage(){
+ if(!selected)return;
+ const text=$("messageInput").value.trim();
+ if(!text||text.length>2000)return;
+ const f=selected.friendship;
+ try{
+  await push(path("chats",f.recipientUid,f.senderUid,"messages"),{
+   senderUid:user.uid,
+   text,
+   createdAt:Date.now()
+  });
+  $("messageInput").value="";
+ }catch(e){
+  alert("Message not sent: "+errorText(e));
+ }
+}
+$("sendMessage").onclick=sendMessage;
+$("messageInput").addEventListener("keydown",e=>{
+ if(e.key==="Enter")sendMessage();
 });
+
+getRedirectResult(auth).catch(e=>{
+ console.error(e);
+ alert("Google sign-in error: "+errorText(e));
+});
+
+const shared=new URLSearchParams(location.search).get("user");
+if(shared)$("searchName").value=shared;
 </script>
 </body>
 </html>
